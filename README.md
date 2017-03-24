@@ -17,24 +17,33 @@ _screenshots_
 * ws
 
 ## Componenten / Views / Routes
-_Componenten per pagina_
+* Componenten per pagina
+* ...
 
 ## Redux
 * Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
 
 ## Mongoose / Mongo model
-_tekst_
+_Volgt zodra de database bekend is_
 
 ## Externe libs
-* ...
-* ...
+* React
+* Node.js
+* API (Rest)
+* Websockets
+* MongDB
+* Mongoose
+* Redux
 
 ## Build proces
-_tekst_
+_Volgt later_
 
 ## Code style
-_tekst_
+![link]https://github.com/airbnb/javascript
 
+## Extra
+* Veiligheid
+* ...
 
 ---
 ### Autheurs
