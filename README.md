@@ -3,22 +3,24 @@
 Een real-time webapplicatie om in teamverband quizzen te spelen.
 
 ## Requirements
-_requirements_
+* Requirements
+* ...
 
 ## Screenshots
 _screenshots_
 
 ## Architectuur
-_architectuur_
+
 
 ## Communicatie protocol
-_communicatie protocol_
+* Rest
+* ws
 
 ## Componenten / Views / Routes
-_tekst_
+_Componenten per pagina_
 
 ## Redux
-_redux_
+* Als het nodig is zal het alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
 
 ## Mongoose / Mongo model
 _tekst_
