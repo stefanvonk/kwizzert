@@ -3,16 +3,16 @@
 Een real-time webapplicatie om in teamverband quizzen te spelen.
 
 ## Requirements
-_requirements
+_requirements_
 
 ## Screenshots
-_screenshots
+_screenshots_
 
 ## Communicatie protocol
-_communicatie protocol
+_communicatie protocol_
 
 ## Componenten / Views / Routes
-_tekst
+_tekst_
 
 ## Redux
 _redux
