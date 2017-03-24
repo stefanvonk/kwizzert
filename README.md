@@ -20,7 +20,7 @@ _screenshots_
 _Componenten per pagina_
 
 ## Redux
-* Als het nodig is zal het alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
+* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
 
 ## Mongoose / Mongo model
 _tekst_
