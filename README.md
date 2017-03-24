@@ -10,7 +10,7 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
 _screenshots_
 
 ## Architectuur
-
+![Architectuur Screenshot](Architectuur.jpeg)
 
 ## Communicatie protocol
 * Rest
