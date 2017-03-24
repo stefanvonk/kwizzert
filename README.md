@@ -1,1 +1,6 @@
 # kwizzert
+
+Hoi
+Hallo
+
+HOIHOIHOIHOI
