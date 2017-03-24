@@ -8,6 +8,9 @@ _requirements_
 ## Screenshots
 _screenshots_
 
+## Architectuur
+_architectuur_
+
 ## Communicatie protocol
 _communicatie protocol_
 
@@ -15,20 +18,21 @@ _communicatie protocol_
 _tekst_
 
 ## Redux
-_redux
+_redux_
 
 ## Mongoose / Mongo model
-_tekst
+_tekst_
 
 ## Externe libs
 * ...
 * ...
 
 ## Build proces
-_tekst
+_tekst_
 
 ## Code style
-_tekst
+_tekst_
 
+---
 ### Autheurs
 Christiaan ten Voorde & Stefan Vonk
