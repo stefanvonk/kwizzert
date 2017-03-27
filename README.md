@@ -77,7 +77,12 @@ Hieronder volgen de screenshots voor elke SPA:
 
 ## Componenten / Views / Routes
 ### Team-app
-#### test
+#### Scherm 1
+* Componenten:
+  	* teamnaam
+    * code
+    * aanmeld button
+    * Meldingveld
 * Componenten per pagina
 * ...
 
