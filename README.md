@@ -76,6 +76,8 @@ Hieronder volgen de screenshots voor elke SPA:
 * ws
 
 ## Componenten / Views / Routes
+### Team-app
+#### test
 * Componenten per pagina
 * ...
 
