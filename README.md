@@ -58,7 +58,15 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
 
 
 ## Screenshots
-_screenshots_
+Hieronder volgen de screenshots voor elke SPA:
+### De Team-app - Smartphone
+![Smartphone Screenshot](Smartphone.jpg)
+
+### De KwizMeestert-app - Tablet
+![Tablet Screenshot](Tablet.jpg)
+
+### De Scorebord-app - Beamer
+![Beamer Screenshot](Beamer.jpg)
 
 ## Architectuur
 ![Architectuur Screenshot](Architectuur.jpeg)
@@ -94,7 +102,7 @@ _Volgt later_
 
 ## Extra
 * Veiligheid
-* ...
+* Bij het afsluiten van de applicatie van de kwizmeestert kan hij na opnieuw openen verder waar hij gebleven was.
 
 ---
 ### Autheurs
