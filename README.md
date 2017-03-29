@@ -76,15 +76,20 @@ Hieronder volgen de screenshots voor elke SPA:
 * Rest
   * 
 * ws 
-  * Verificatie code versturen: `send`
-    * Type: 
-    * String: 
-  * Verificatie geaccepteerd: `onmessage`
-    * Type: 
+  * Verificatie geaccepteerd:
+    * Type: teamgeaccepteerd
+    * String: _melding_
+  * Ontvangst vraag:
+    * Type: ontvangstvraag
+    * String: _vraag_
+  * Vraag afbreken:
+    * Type: afbrekenvraag
+  * Kwiz gestopt:
+    * Type: Kwizgestopt
 
 ### KwizMeestert-app
 * Rest
-  * 
+
 * ws
   * Verificatie geaccepteerd:
     * Type: kwizavondgestart
@@ -112,14 +117,46 @@ Hieronder volgen de screenshots voor elke SPA:
 
 ### Scorebord-app
 * Rest
-  * 
+
 * ws
-  * 
-  * 
+  * Verificatie code ontvangen:
+    * Type: ontvangstcode
+    * String: _code_
+  * Geaccepteerd team:
+    * Type: geaccepteerdteam
+    * String: _teamnaam_
+  * Ontvangst vraag:
+    * Type: scoreboardvraag
+    * {
+        Number: rondenummer,
+        Number: vraagnummer,
+        String: question,
+        String: category
+      }: _vraag_
+  * Ontvangst teamnaam:
+    * Type: scoreboardteamnaam
+    * String: _teamnaam_
+  * Ontvangst teamgegevens:
+    * Type: scoreboardteamgegevens
+    * Array[teams: {
+        String: teamnaam,
+        String: antwoord,
+        Number: rondepunten,
+        Number: vragengoed
+      }]: _teamgegevens_
+  * Gecontroleerd antwoord:
+    * Type: scoreboardgecontroleerdantwoord
+    * Boolean: _correct_
+  * Scorelijst ontvangen
+    * Type: scorelijst
+    * Array[teams: {
+        String: teamnaam,
+        Number: rondepunten
+      }]: _scorelijst_
 
 ### Server
 * Rest
-  * 
+
 * ws
   * Verificatie code:
     * Type: startkwizavond
@@ -151,7 +188,13 @@ Hieronder volgen de screenshots voor elke SPA:
     * Boolean: _goedgekeurd_
   * Volgende:
     * Type: volgende
-  
+  * Team aanmelden:
+    * Type: aanmeldenteam
+    * String: _code_
+    * String: _teamnaam_
+  * Ontvangst antwoord:
+    * Type: ontvangstantwoord
+    * String: _antwoord_
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
