@@ -243,7 +243,7 @@ Hieronder het model voor de database:
 Wij hebben ervoor gekozen alleen de vragen in de database op te slaan, alle verdere gegevens worden in het geheugen opgeslagen.
 Dit willen we doen door het aanmaken van een object. Hieronder volgt de implementatie daarvan:
 
-`
+```js
 let state = {
     kwizzen: [{
         code: "",
@@ -263,7 +263,7 @@ let state = {
         }]
     }]
 };
-`
+```
 
 ## Externe libs
 * React
