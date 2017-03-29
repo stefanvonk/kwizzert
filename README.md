@@ -119,6 +119,8 @@ Hieronder het model voor de database:
 
 ![Database](Database.png)
 
+Wij hebben ervoor gekozen alleen de vragen in de database op te slaan, alle verdere gegevens worden in het geheugen opgeslagen.
+
 ## Externe libs
 * React
 * Node.js
