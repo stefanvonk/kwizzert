@@ -57,7 +57,7 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
 * We houden bij het creeën van de lay-out rekening met het maximale aantal deelnemers van 6 teams.
 
 
-## Screenshots
+## Low fidelity designs
 Hieronder volgen de screenshots voor elke SPA:
 ### De Team-app - Smartphone
 ![Smartphone Screenshot](Smartphone.jpg)
