@@ -244,7 +244,25 @@ Wij hebben ervoor gekozen alleen de vragen in de database op te slaan, alle verd
 Dit willen we doen door het aanmaken van een object. Hieronder volgt de implementatie daarvan:
 
 `
-
+let state = {
+    kwizzen: [{
+        code: "",
+        kwizmeestertSocket: null,
+        beamerSocket: null,
+        gesteldeVragen: [],
+        huidigevraag: {
+            vraag: "",
+            antwoord: ""
+        },
+        teams : [{
+            teamSocket: null,
+            teamnaam: "",
+            huidigAntwoord: "",
+            rondepunten : 0,
+            vragenGoed: 0
+        }]
+    }]
+};
 `
 
 ## Externe libs
