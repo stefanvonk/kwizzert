@@ -116,7 +116,7 @@ De omschrijvingen zijn als volgt opgebouwd:
 
 ## Mongoose / Mongo model
 Hieronder het model voor de database:
-![Database](Database.jpg)
+![Database](Database.png)
 
 ## Externe libs
 * React
