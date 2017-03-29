@@ -105,7 +105,7 @@ _Volgt zodra de database bekend is_
 _Volgt later_
 
 ## Code style
-![link]https://github.com/airbnb/javascript
+https://github.com/airbnb/javascript
 
 ## Extra
 * Veiligheid
