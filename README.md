@@ -72,8 +72,86 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
+### Team-app
 * Rest
+  * 
+* ws 
+  * Verificatie code versturen: `send`
+    * Type: 
+    * String: 
+  * Verificatie geaccepteerd: `onmessage`
+    * Type: 
+
+### KwizMeestert-app
+* Rest
+  * 
 * ws
+  * Verificatie geaccepteerd:
+    * Type: kwizavondgestart
+    * Boolean: _geaccepteerd_
+  * Ontvangst teamnaam:
+    * Type: teamaangemeld
+    * String: _teamnaam_
+  * Ontvangst categorieën:
+    * Type: ontvangstcategorieen
+    * Array[String]: _categorieën_
+  * Ontvangst vragen:
+    * Type: ontvangstvragen
+    * Array[vragen: {
+        ObjectID: _id,
+        String: question,
+        String: answer,
+        String: category
+      }]: _vragen_
+  * Ontvangst teamantwoorden:
+    * Type: ontvangstantwoorden
+    * Array[vragen: {
+        String: teamnaam,
+        String: antwoord,
+      }]: _teamnantwoorden_
+
+### Scorebord-app
+* Rest
+  * 
+* ws
+  * 
+  * 
+
+### Server
+* Rest
+  * 
+* ws
+  * Verificatie code:
+    * Type: startkwizavond
+    * String: _code_
+  * Team geaccepteerd:
+    * Type: teamgeaccepteerd
+    * String: _teamnaam_
+    * Boolean: _geaccepteerd_
+  * Kwiz starten:
+    * Type: startkwiz
+  * Ronde starten:
+    * Type: startronde
+    * Array[String]: _3 categorieën_
+  * Kwiz stoppen:
+    * Type: stopkwiz
+  * Vraag starten
+    * Type: startvraag
+    * {
+        ObjectID: _id,
+        String: question,
+        String: answer,
+        String: category
+      }: _vraag_
+  * Vraag stoppen:
+    * Type: stopvraag
+  * Antwoord gecontroleerd:
+    * Type: antwoordgecontroleerd
+    * String: _teamnaam_
+    * Boolean: _goedgekeurd_
+  * Volgende:
+    * Type: volgende
+  
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
