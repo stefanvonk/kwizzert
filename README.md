@@ -128,15 +128,10 @@ Hieronder volgen de screenshots voor elke SPA:
   * Ontvangst vraag:
     * Type: scoreboardvraag
     * {
-    
         Number: rondenummer,
-        
         Number: vraagnummer,
-        
         String: question,
-        
         String: category
-        
       }: _vraag_
   * Ontvangst teamnaam:
     * Type: scoreboardteamnaam
