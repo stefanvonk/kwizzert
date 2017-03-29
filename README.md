@@ -53,7 +53,7 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
 * Elke vraag mag maar 1 keer worden gesteld.
 
 ### Lay-out
-* Bij het tonen van de vraag mag deze niet buiten het beeld vallen, de vraag moet goed te lezen zijn. We houden rekening tot en met de langste vraag die op dit moment in de database staat.
+* Bij het tonen van de vraag mag deze niet buiten het beeld vallen, de vraag moet goed te lezen zijn. We houden hierbij rekening tot en met de langste vraag die op dit moment in de database staat.
 * We houden bij het creeën van de lay-out rekening met het maximale aantal deelnemers van 6 teams.
 
 
