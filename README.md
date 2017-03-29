@@ -69,7 +69,7 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Beamer Screenshot](Beamer.jpg)
 
 ## Architectuur
-![Deployment Diagram](Deployment Diagram.png)
+![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
 * Rest
