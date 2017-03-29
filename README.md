@@ -78,7 +78,7 @@ Hieronder volgen de screenshots voor elke SPA:
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
 ### _Naam van de app_
-* _(Nummer van scherm) Componenten_
+* _(Nummer van scherm) Component_
   * _Omschrijving pagina_
 
 ### Team-app
@@ -115,7 +115,8 @@ De omschrijvingen zijn als volgt opgebouwd:
 * Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
 
 ## Mongoose / Mongo model
-_Volgt_
+Hieronder het model voor de database:
+![Database](Database.jpg)
 
 ## Externe libs
 * React
