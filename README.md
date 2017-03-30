@@ -9,32 +9,34 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
    * Team-app
    * KwizMeestert-app
    * Scorebord-app
-* Deze applicaites moeten door 1 server worden aangestuurd.
-* Near realtime communicatie door middel van websockets is verplicht.
+* Deze applicaties moeten door 1 server worden aangestuurd.
+* Near real-time communicatie door middel van websockets is verplicht.
 * Aan het einde van de ronde moet de server automatisch het totaal aantal punten voor elk team uitrekenen.
-* De puntentelling gaat per ronde alsvolgt: Het team wat de meeste vragen goed heeft krijgt 4 punten, daarna 2 en daarna 1 en de rest 0.1.
+* De puntentelling gaat per ronde als volgt: Het team wat de meeste vragen goed heeft krijgt 4 punten, daarna 2 en daarna 1 en de rest 0.1.
 
 ### Team-app
 * Deze app moet kunnen draaien op een smartphone.
 * Er moet een scherm voor aanmelden bij de kwiz getoond worden waar naam en wachtoord ingevoerd kunnen worden. 
 * De velden naam en wachtwoord mogen niet leeg worden opgestuurd.
-* De app moeten tonen of het team geaccepteerd is door de server of de kwismeestert.
+* De app moeten tonen of het team geaccepteerd is.
 * De app moet een vraag tonen.
 * Er moet een antwoord kunnen worden ingevuld als tekst.
 * In de applicatie kan een antwoord worden gewijzigd totdat de vraag gesloten wordt door de kwizmeestert.
 * Lege antwoorden kunnen niet worden ingestuurd.
 
 ### KwizMeestert-app
-* Moet draaien op een tablet.
-* Kwizavond starten door middel van het invoeren van een wachtwoord en het klikken op start.
-* Aanmeldingen van teams accepteren of weigeren.
-* De kwiz starten.
-* 3 categorieën selecteren en op de startronde knop klikken.
-* Na elke ronde klikken op nieuwe ronde of stoppen.
-* Een vraag kiezen uit de lijst met getoonde vragen uit de drie gekozen categorieën.
-* Een vraag starten door op de knop te klikken.
-* Een vraag stoppen door op de knop te klikken.
-* Antwoorden goed- of afkeuren.
+* Deze app moet kunnen draaien op een tablet.
+* Kwizavond moet gestart kunnen worden.
+* Aan een kwizavond moet een code gekoppeld kunnen worden door de kwizmeestert.
+* Aanmeldingen van teams moeten geaccepteerd of geweigerd kunnen worden.
+* De kwiz moet gestart kunnen worden.
+* Een ronde moet gestart kunnen worden door 3 categorieën selecteren en op de startronde knop te klikken.
+* Na elke ronde moet er een nieuwe ronde gestart kunnen worden.
+* Na elke ronde moet de quiz gestopt kunnen worden.
+* Uit een aantal voorgestelde vragen van de 3 categorieën moet er een vraag gekozen kunnen worden.
+* De vraag moet gestart kunnen worden.
+* De vraag moet gestopt kunnen worden.
+* Antwoorden van de teams moeten goedgekeurd of afgekeurd kunnen worden.
 
 ### Scorebord-app
 * De app moet draaien op een groot scherm.
@@ -72,6 +74,7 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
+* (Op dit moment is er nog geen communicatie via Rest. Dit zal ergens toegevoegd moeten worden.)
 ### Team-app
 * Rest
 
@@ -264,6 +267,8 @@ let state = {
     }]
 };
 ```
+Het opslaan van dit object in het geheugen heeft een aantal voordelen. Via dit object zal sneller te vinden zijn naar welke sockets wat gestuurd moet worden, in plaats van aan de socketserver de lijst sockets steeds door te lopen. Als alternatief zouden alle gerelateerde sockets opgeslagen kunnen worden in de socket zelf. Dit werd afgeraden omdat de structuur van een extern object veranderd wordt en omdat alle data dan op meerdere plekken opgeslagen moet worden.
+
 
 ## Externe libs
 * React
@@ -272,7 +277,7 @@ let state = {
 * Websockets
 * MongDB
 * Mongoose
-* Redux
+* (Redux)
 
 ## Build proces
 _Volgt later_
