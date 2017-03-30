@@ -74,7 +74,7 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
-* (Op dit moment is er nog geen communicatie via Rest. Dit zal ergens toegevoegd moeten worden.)
+* (Op dit moment is er geen communicatie via Rest. Als het nodig blijkt te zijn zal het worden toegevoegd.)
 ### Team-app
 * Rest
 
