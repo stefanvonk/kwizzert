@@ -241,7 +241,7 @@ De omschrijvingen zijn als volgt opgebouwd:
 ## Mongoose / Mongo model
 Hieronder het model voor de database:
 
-![Database](Database.png)
+![databaseSchema](databaseSchema.png)
 
 Wij hebben ervoor gekozen alleen de vragen in de database op te slaan, alle verdere gegevens worden in het geheugen opgeslagen.
 Dit willen we doen door het aanmaken van een object. Hieronder volgt de implementatie daarvan:
