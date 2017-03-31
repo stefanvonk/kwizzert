@@ -1,2 +1,6 @@
 File om korte gedachten neer te zetten die even nergens anders handig kunnen staan.
 
+Teams hebben een boolean nodig of ze geaccepteerd zijn of teams worden gelijk toegevoegd aan de lijst. teamnaam moet uniek zijn. en team wordt verwijdert uit de lijst als ze niet geaccepteerd zijn.
+Als we dit niet doen krijgen we het volgende probleem. 
+Als we het team toevoegen voor de acceptatie, kunnen er teams in de lijst komen te staan die niet geaccepteerd zijn.
+Als we teams niet gelijk toevoegen, kunnen we niet 100% zeker de socket koppelen als de kwizmeestert deze accepteerd.
