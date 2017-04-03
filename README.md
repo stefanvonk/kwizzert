@@ -164,6 +164,13 @@ object: {
 
 ### Server
 * ws
+  * Team aanmelden: (1)
+    * Type: aanmeldenteam
+    * String: _code_
+    * String: _teamnaam_
+  * Ontvangst antwoord:
+    * Type: ontvangstantwoord
+    * String: _antwoord_
   * Verificatie code:
     * Type: startkwizavond
     * String: _code_
@@ -194,13 +201,6 @@ object: {
     * Boolean: _goedgekeurd_
   * Volgende:
     * Type: volgende
-  * Team aanmelden:
-    * Type: aanmeldenteam
-    * String: _code_
-    * String: _teamnaam_
-  * Ontvangst antwoord:
-    * Type: ontvangstantwoord
-    * String: _antwoord_
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
@@ -209,33 +209,33 @@ De omschrijvingen zijn als volgt opgebouwd:
   * _Omschrijving pagina_
 
 ### Team-app
-* (1) aanmelden
+* (scherm 1) aanmelden
   * Op dit scherm kan het team zich aanmelding door middel van het invoeren van de code en het opgeven van de teamnaam. Aan de onderzijde van het scherm kunnen meldingen verschijnen zoals de melding dat de teamnaam al gekozen is.
-* (2) kwiz
+* (scherm 2) kwiz
   * Op dit scherm wordt de kwiz gespeelt en ook hier kunnen meldingen verschijnen aan de onderzijde van het scherm.
-* (3) kwizgesloten
+* (scherm 3) kwizgesloten
   * Dit scherm wordt weergegeven als de kwiz wordt gesloten. Er is een knop om terug te gaan naar het aanmeldscherm.
 
 ### KwizMeestert-app
-* (1) kwizstarten
+* (scherm 1) kwizstarten
   * Op dit scherm kan de kwizmeestert een code invoeren en de kwiz starten.
-* (2) teamsaccepteren
+* (scherm 2) teamsaccepteren
   * Hier worden alle teams die zich aanmelden getoond en kan de kwizmeestert de teams accepteren. Er is ook een knop om de kwiz te starten.
-* (3) rondestarten
+* (scherm 3) rondestarten
   * Er kunnen 3 categorieën gekozen worden en een ronde kan worden gestart. De kwiz kan op dit scherm ook worden gestopt.
-* (4) vragenkiezen
+* (scherm 4) vragenkiezen
   * Op dit scherm worden vragen getoond waaruit er 1 kan worden geselecteerd. De vraag kan in dit scherm worden gestart en vervolgens gestopt.
-* (5) antwoordcontroleren
+* (scherm 5) antwoordcontroleren
   * De antwoorden per team verschijnen in dit scherm en kunnen goedgekeurd of afgekeurd worden. Onderaan staat een knop om naar de volgende vraag te gaan.
 
 ### Scorebord-app
-* (1) voorafkwiz
+* (scherm 1) voorafkwiz
   * Het wachtwoord en de deelnemende teams worden weergegeven.
-* (2) actievevraag
+* (scherm 2) actievevraag
   * De voortgang, huidige vraag en categorie en de teamnamen van de teams die antwoord hebben gegeven.
-* (3) beoordelingvraag
+* (scherm 3) beoordelingvraag
   * De voortgang en een overzicht van de goed- of foutgekeurde atwoorden en score per team worden weergegeven.
-* (4) achterafkwiz
+* (scherm 4) achterafkwiz
   * De teamnamen plus hun scores worden weergegeven.
 
 In de server zal gebruik worden gemaakt van `app.use.static` om naar de clients te gaan.
