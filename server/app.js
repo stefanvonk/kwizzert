@@ -1,10 +1,13 @@
 var express     = require('express');
 // var bodyParser  = require('body-parser');
 var path        = require('path');
+var mongoose        = require('./DatabaseConnection/mongoose.js');
 
 var app = express();
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false}));
+
+mongoose.fillDatabase();
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
 app.use('/', express.static(path.join(__dirname, '../Clients/team/build')));
