@@ -7,12 +7,14 @@ var theHttpServer      = http.createServer();
 var theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
-
 var startkwizFile = require('./messages/startkwiz');
+var mongoose        = require('./DatabaseConnection/mongoose.js');
 
 var app = express();
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false}));
+
+mongoose.fillDatabase();
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
 app.use('/', express.static(path.join(__dirname, '../Clients/team/build')));
