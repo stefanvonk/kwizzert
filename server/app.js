@@ -7,7 +7,9 @@ var app = express();
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false}));
 
-mongoose.fillDatabase();
+if(false){
+    mongoose.fillDatabase();
+}
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
 app.use('/', express.static(path.join(__dirname, '../Clients/team/build')));
