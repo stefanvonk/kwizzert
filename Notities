@@ -15,7 +15,7 @@ Clients
 	-
 Server
 	app.use.static naar clients.
-	Problemen met localhost:3000/
+	Problemen met localhost:3000/teams/vraag als je direct naar deze link toe gaat.
 
 Redux iets beter beargumenteren. 
 MongoDB model beter onderbouwen.
