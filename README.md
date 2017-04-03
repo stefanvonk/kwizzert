@@ -69,6 +69,7 @@ Hieronder volgen de screenshots voor elke SPA. In de afbeeldingen zijn getallen 
 
 ### De Scorebord-app - Beamer
 ![Beamer Screenshot](Beamer.jpg)
+De Scorebord-app heeft aan het begin nog een aanmeldscherm nodig. Dit om de beamer te koppelen aan de quiz.
 
 ## Architectuur
 ![Deployment Diagram](DeploymentDiagram.png)
@@ -127,9 +128,9 @@ object: {
 
 ### Scorebord-app
 * ws
-  * Verificatie code ontvangen: (21)
+  * Verificatie code goedgekeurd: (21)
     * Type: ontvangstcode
-    * String: _code_
+    * Boolean: goedgekeurd
   * Geaccepteerd team: (22)
     * Type: geaccepteerdteam
     * String: _teamnaam_
@@ -201,6 +202,9 @@ object: {
     * Boolean: _goedgekeurd_
   * Volgende: (20)
     * Type: volgende
+  * Beamer aanmelden: (28)
+    * Type: aanmeldenbeamer
+    * String: _code_
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
@@ -237,6 +241,8 @@ De omschrijvingen zijn als volgt opgebouwd:
   * De voortgang en een overzicht van de goed- of foutgekeurde atwoorden en score per team worden weergegeven.
 * (scherm 4) achterafkwiz
   * De teamnamen plus hun scores worden weergegeven.
+* (scherm 5) voorafvooraf
+  * Aanmeldscherm om een code in te voeren om verbonden te worden met de juiste quiz.
 
 In de server zal gebruik worden gemaakt van `app.use.static` om naar de clients te gaan.
 Dit zal er voor zorgen dat problemen met links als `localhost:3000/teams/vraag` niet optreden, maar de client de index ophaalt als je  direct naar deze link gaat.
