@@ -4,3 +4,22 @@ Teams hebben een boolean nodig of ze geaccepteerd zijn of teams worden gelijk to
 Als we dit niet doen krijgen we het volgende probleem. 
 Als we het team toevoegen voor de acceptatie, kunnen er teams in de lijst komen te staan die niet geaccepteerd zijn.
 Als we teams niet gelijk toevoegen, kunnen we niet 100% zeker de socket koppelen als de kwizmeestert deze accepteerd.
+
+
+Nummeren van JSON.
+Interactie aangeven tussen schermen en communicatie aangeven.
+
+Clients
+	-
+	-
+	-
+Server
+	app.use.static naar clients.
+	Problemen met localhost:3000/
+
+Redux iets beter beargumenteren. 
+MongoDB model beter onderbouwen.
+state naamkeuze mogelijk naar session.
+categorien bij huidigeronde.
+Benoem nadelen ook bij Model.
+En benoem waarom de voordelen belangrijker zijn dan de nadelen.
