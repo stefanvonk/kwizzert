@@ -75,9 +75,18 @@ Hieronder volgen de screenshots voor elke SPA:
 
 ## Communicatie protocol
 * We zullen in deze app alleen comuniceren via websockets omdat de dataoverdracht klein is.
+
+De comunicatie via ws zal op de volgende manier worden gedefineerd als objecten:
+```js
+_naamvansocket_: Type,
+"_bepaalde string_": String,
+_true/false_: Boolean,
+_naamvanarray_: Array[]
+```
+
 ### Team-app
 * ws 
-  * Verificatie geaccepteerd:
+  * Verificatie geaccepteerd: (1)
     * Type: teamgeaccepteerd
     * String: _melding_
   * Ontvangst vraag:
@@ -227,11 +236,15 @@ De omschrijvingen zijn als volgt opgebouwd:
 * (4) achterafkwiz
   * De teamnamen plus hun scores worden weergegeven.
 
+In de server zal gebruik worden gemaakt van `app.use.static` om naar de clients te gaan.
+Dit zal er voor zorgen dat problemen met links als `localhost:3000/teams/vraag` niet optreden, maar de client de index ophaalt als je  direct naar deze link gaat.
+
 ## Redux
-* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
+* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk omdat hier geen informatie in de statie wordt opgeslagen.
 
 ## Mongoose / Mongo model
-Hieronder het model voor de database:
+Hieronder het model voor de database. We hebben ervoor gekozen de categorieën niet appart op te nemen omdat er niet veel vragen in de database staan. Als de categorieën moeten worden opgehaald hoeven er niet veel (minder dan 1000) vragen worden doorgenomen, deze actie neemt niet veel tijd in beslag. 
+Daarnaast is het niet nodig er nu een string staat in het veld 'category', als de categorieën appart worden opgenomen staat er een verwijzing. Dit maakt in feite niet veel uit.
 
 ![databaseSchema](databaseSchema.png)
 
@@ -239,12 +252,13 @@ Wij hebben ervoor gekozen alleen de vragen in de database op te slaan, alle verd
 Dit willen we doen door het aanmaken van een object. Hieronder volgt de implementatie daarvan:
 
 ```js
-let state = {
+let session = {
     kwizzen: [{
         code: "",
         kwizmeestertSocket: null,
         beamerSocket: null,
         gesteldeVragen: [],
+        huidigeronde: [],
         huidigevraag: {
             vraag: "",
             antwoord: ""
@@ -252,6 +266,7 @@ let state = {
         teams : [{
             teamSocket: null,
             teamnaam: "",
+            geaccepteerd: Boolean,
             huidigAntwoord: "",
             rondepunten : 0,
             vragenGoed: 0
@@ -260,6 +275,8 @@ let state = {
 };
 ```
 Het opslaan van dit object in het geheugen heeft een aantal voordelen. Via dit object zal sneller te vinden zijn naar welke sockets wat gestuurd moet worden, in plaats van aan de socketserver de lijst sockets steeds door te lopen. Als alternatief zouden alle gerelateerde sockets opgeslagen kunnen worden in de socket zelf. Dit werd afgeraden omdat de structuur van een extern object veranderd wordt en omdat alle data dan op meerdere plekken opgeslagen moet worden.
+Een nadeel van het opslaan in het geheugen is dat de kwiz op deze manier niet extern wordt opgeslagen. Mocht er nu een fout optreden zodat de applicatie crasht is het na restart niet mogelijk om verder te gaan waar men gebleven was.
+De voordelen zijn op dit moment belangrijker dan de nadelen omdat het er in deze applicatie niet om gaat dat de kwiz moet worden opgeslagen. Dit is een functionaliteit die later eventueel kan worden ingebouwd. Snelheid is daarentegen belangrijk in deze applicatie.
 
 
 ## Externe libs
