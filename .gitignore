@@ -1,0 +1,23 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/server/node_modules
+/server/build
+/clients/kwizmeestert/node_modules
+/clients/kwizmeestert/build
+/clients/scorebord/node_modules
+/clients/scorebord/build
+/clients/team/node_modules
+/clients/team/build
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+/.idea
