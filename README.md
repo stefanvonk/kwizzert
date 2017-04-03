@@ -78,10 +78,12 @@ Hieronder volgen de screenshots voor elke SPA:
 
 De comunicatie via ws zal op de volgende manier worden gedefineerd als objecten:
 ```js
-_naamvansocket_: Type,
-"_bepaalde string_": String,
-_true/false_: Boolean,
-_naamvanarray_: Array[]
+object: {
+  naamvansocket: Type,
+  "bepaalde string": String,
+  true/false: Boolean,
+  naamvanarray: Array[]
+}
 ```
 
 ### Team-app
