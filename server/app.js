@@ -38,7 +38,7 @@ theHttpServer.listen( 3000,
 
 theWebSocketServer.on('connection', function connection(websocket) {
     console.log("CONNECTION CREATED");
-    websocket.on('message', function incoming(message) {
+    websocket.onmessage = function incoming(message) {
         console.log("Het werkt!!");
         switch(message) {
             case "aanmeldenteam":
@@ -75,7 +75,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 console.log("volgende");
                 break;
         }
-    });
+    };
     websocket.on('close', function() {
         console.log('CONNECTION FOR ' + websocket.type + " CLOSED.");
         if(websocket.timeoutObject) {
