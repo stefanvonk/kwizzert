@@ -88,29 +88,29 @@ object: {
 
 ### Team-app
 * ws 
-  * Verificatie geaccepteerd: (1)
+  * Verificatie geaccepteerd: (2)
     * Type: teamgeaccepteerd
     * String: _melding_
-  * Ontvangst vraag:
+  * Ontvangst vraag: (3)
     * Type: ontvangstvraag
     * String: _vraag_
-  * Vraag afbreken:
+  * Vraag afbreken: (5)
     * Type: afbrekenvraag
-  * Kwiz gestopt:
+  * Kwiz gestopt: (6)
     * Type: Kwizgestopt
 
 ### KwizMeestert-app
 * ws
-  * Verificatie geaccepteerd:
+  * Verificatie geaccepteerd: (8)
     * Type: kwizavondgestart
     * Boolean: _geaccepteerd_
-  * Ontvangst teamnaam:
+  * Ontvangst teamnaam: (9)
     * Type: teamaangemeld
     * String: _teamnaam_
-  * Ontvangst categorieën:
+  * Ontvangst categorieën: (12)
     * Type: ontvangstcategorieen
     * Array[String]: _categorieën_
-  * Ontvangst vragen:
+  * Ontvangst vragen: (15)
     * Type: ontvangstvragen
     * Array[vragen: {
         ObjectID: _id,
@@ -118,7 +118,7 @@ object: {
         String: answer,
         String: category
       }]: _vragen_
-  * Ontvangst teamantwoorden:
+  * Ontvangst teamantwoorden: (18)
     * Type: ontvangstantwoorden
     * Array[vragen: {
         String: teamnaam,
@@ -127,13 +127,13 @@ object: {
 
 ### Scorebord-app
 * ws
-  * Verificatie code ontvangen:
+  * Verificatie code ontvangen: (21)
     * Type: ontvangstcode
     * String: _code_
-  * Geaccepteerd team:
+  * Geaccepteerd team: (22)
     * Type: geaccepteerdteam
     * String: _teamnaam_
-  * Ontvangst vraag:
+  * Ontvangst vraag: (23)
     * Type: scoreboardvraag
     * {
         Number: rondenummer,
@@ -141,10 +141,10 @@ object: {
         String: question,
         String: category
       }: _vraag_
-  * Ontvangst teamnaam:
+  * Ontvangst teamnaam: (24)
     * Type: scoreboardteamnaam
     * String: _teamnaam_
-  * Ontvangst teamgegevens:
+  * Ontvangst teamgegevens: (25)
     * Type: scoreboardteamgegevens
     * Array[teams: {
         String: teamnaam,
@@ -152,10 +152,10 @@ object: {
         Number: rondepunten,
         Number: vragengoed
       }]: _teamgegevens_
-  * Gecontroleerd antwoord:
+  * Gecontroleerd antwoord: (26)
     * Type: scoreboardgecontroleerdantwoord
     * Boolean: _correct_
-  * Scorelijst ontvangen
+  * Scorelijst ontvangen: (27)
     * Type: scorelijst
     * Array[teams: {
         String: teamnaam,
@@ -168,24 +168,24 @@ object: {
     * Type: aanmeldenteam
     * String: _code_
     * String: _teamnaam_
-  * Ontvangst antwoord:
+  * Ontvangst antwoord: (4)
     * Type: ontvangstantwoord
     * String: _antwoord_
-  * Verificatie code:
+  * Verificatie code: (7)
     * Type: startkwizavond
     * String: _code_
-  * Team geaccepteerd:
+  * Team geaccepteerd: (10)
     * Type: teamgeaccepteerd
     * String: _teamnaam_
     * Boolean: _geaccepteerd_
-  * Kwiz starten:
+  * Kwiz starten: (11)
     * Type: startkwiz
-  * Ronde starten:
+  * Ronde starten: (13)
     * Type: startronde
     * Array[String]: _3 categorieën_
-  * Kwiz stoppen:
+  * Kwiz stoppen: (14)
     * Type: stopkwiz
-  * Vraag starten
+  * Vraag starten (16)
     * Type: startvraag
     * {
         ObjectID: _id,
@@ -193,13 +193,13 @@ object: {
         String: answer,
         String: category
       }: _vraag_
-  * Vraag stoppen:
+  * Vraag stoppen: (17)
     * Type: stopvraag
-  * Antwoord gecontroleerd:
+  * Antwoord gecontroleerd: (19)
     * Type: antwoordgecontroleerd
     * String: _teamnaam_
     * Boolean: _goedgekeurd_
-  * Volgende:
+  * Volgende: (20)
     * Type: volgende
 
 ## Componenten / Views / Routes
@@ -242,7 +242,7 @@ In de server zal gebruik worden gemaakt van `app.use.static` om naar de clients 
 Dit zal er voor zorgen dat problemen met links als `localhost:3000/teams/vraag` niet optreden, maar de client de index ophaalt als je  direct naar deze link gaat.
 
 ## Redux
-* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk omdat hier geen informatie in de statie wordt opgeslagen.
+* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk omdat hier geen informatie in de state wordt opgeslagen.
 
 ## Mongoose / Mongo model
 Hieronder het model voor de database. We hebben ervoor gekozen de categorieën niet appart op te nemen omdat er niet veel vragen in de database staan. Als de categorieën moeten worden opgehaald hoeven er niet veel (minder dan 1000) vragen worden doorgenomen, deze actie neemt niet veel tijd in beslag. 
