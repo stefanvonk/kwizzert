@@ -74,10 +74,8 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
-* (Op dit moment is er geen communicatie via Rest. Als het nodig blijkt te zijn zal het worden toegevoegd.)
+* We zullen in deze app alleen comuniceren via websockets omdat de dataoverdracht klein is.
 ### Team-app
-* Rest
-
 * ws 
   * Verificatie geaccepteerd:
     * Type: teamgeaccepteerd
@@ -91,8 +89,6 @@ Hieronder volgen de screenshots voor elke SPA:
     * Type: Kwizgestopt
 
 ### KwizMeestert-app
-* Rest
-
 * ws
   * Verificatie geaccepteerd:
     * Type: kwizavondgestart
@@ -119,8 +115,6 @@ Hieronder volgen de screenshots voor elke SPA:
       }]: _teamnantwoorden_
 
 ### Scorebord-app
-* Rest
-
 * ws
   * Verificatie code ontvangen:
     * Type: ontvangstcode
@@ -158,8 +152,6 @@ Hieronder volgen de screenshots voor elke SPA:
       }]: _scorelijst_
 
 ### Server
-* Rest
-
 * ws
   * Verificatie code:
     * Type: startkwizavond
