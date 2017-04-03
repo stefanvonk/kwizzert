@@ -60,7 +60,7 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
 
 
 ## Low fidelity designs
-Hieronder volgen de screenshots voor elke SPA:
+Hieronder volgen de screenshots voor elke SPA. In de afbeeldingen zijn getallen opgenomen die verwijzen naar de getallen in het hoofdstuk communicatie. Hiermee wordt duidelijk waar welke communicatie plaatsvindt.
 ### De Team-app - Smartphone
 ![Smartphone Screenshot](Smartphone.jpg)
 
@@ -74,32 +74,43 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
-* We zullen in deze app alleen comuniceren via websockets omdat de dataoverdracht klein is.
+* We zullen in deze app alleen communiceren via websockets omdat de dataoverdracht klein is.
+
+De communicatie via ws zal op de volgende manier worden gedefineerd als objecten:
+```js
+object: {
+  naamvansocket: Type,
+  "bepaalde string": String,
+  true/false: Boolean,
+  naamvanarray: Array[]
+}
+```
+
 ### Team-app
 * ws 
-  * Verificatie geaccepteerd:
+  * Verificatie geaccepteerd: (2)
     * Type: teamgeaccepteerd
     * String: _melding_
-  * Ontvangst vraag:
+  * Ontvangst vraag: (3)
     * Type: ontvangstvraag
     * String: _vraag_
-  * Vraag afbreken:
+  * Vraag afbreken: (5)
     * Type: afbrekenvraag
-  * Kwiz gestopt:
+  * Kwiz gestopt: (6)
     * Type: Kwizgestopt
 
 ### KwizMeestert-app
 * ws
-  * Verificatie geaccepteerd:
+  * Verificatie geaccepteerd: (8)
     * Type: kwizavondgestart
     * Boolean: _geaccepteerd_
-  * Ontvangst teamnaam:
+  * Ontvangst teamnaam: (9)
     * Type: teamaangemeld
     * String: _teamnaam_
-  * Ontvangst categorieën:
+  * Ontvangst categorieën: (12)
     * Type: ontvangstcategorieen
     * Array[String]: _categorieën_
-  * Ontvangst vragen:
+  * Ontvangst vragen: (15)
     * Type: ontvangstvragen
     * Array[vragen: {
         ObjectID: _id,
@@ -107,7 +118,7 @@ Hieronder volgen de screenshots voor elke SPA:
         String: answer,
         String: category
       }]: _vragen_
-  * Ontvangst teamantwoorden:
+  * Ontvangst teamantwoorden: (18)
     * Type: ontvangstantwoorden
     * Array[vragen: {
         String: teamnaam,
@@ -116,13 +127,13 @@ Hieronder volgen de screenshots voor elke SPA:
 
 ### Scorebord-app
 * ws
-  * Verificatie code ontvangen:
+  * Verificatie code ontvangen: (21)
     * Type: ontvangstcode
     * String: _code_
-  * Geaccepteerd team:
+  * Geaccepteerd team: (22)
     * Type: geaccepteerdteam
     * String: _teamnaam_
-  * Ontvangst vraag:
+  * Ontvangst vraag: (23)
     * Type: scoreboardvraag
     * {
         Number: rondenummer,
@@ -130,10 +141,10 @@ Hieronder volgen de screenshots voor elke SPA:
         String: question,
         String: category
       }: _vraag_
-  * Ontvangst teamnaam:
+  * Ontvangst teamnaam: (24)
     * Type: scoreboardteamnaam
     * String: _teamnaam_
-  * Ontvangst teamgegevens:
+  * Ontvangst teamgegevens: (25)
     * Type: scoreboardteamgegevens
     * Array[teams: {
         String: teamnaam,
@@ -141,10 +152,10 @@ Hieronder volgen de screenshots voor elke SPA:
         Number: rondepunten,
         Number: vragengoed
       }]: _teamgegevens_
-  * Gecontroleerd antwoord:
+  * Gecontroleerd antwoord: (26)
     * Type: scoreboardgecontroleerdantwoord
     * Boolean: _correct_
-  * Scorelijst ontvangen
+  * Scorelijst ontvangen: (27)
     * Type: scorelijst
     * Array[teams: {
         String: teamnaam,
@@ -153,21 +164,28 @@ Hieronder volgen de screenshots voor elke SPA:
 
 ### Server
 * ws
-  * Verificatie code:
+  * Team aanmelden: (1)
+    * Type: aanmeldenteam
+    * String: _code_
+    * String: _teamnaam_
+  * Ontvangst antwoord: (4)
+    * Type: ontvangstantwoord
+    * String: _antwoord_
+  * Verificatie code: (7)
     * Type: startkwizavond
     * String: _code_
-  * Team geaccepteerd:
+  * Team geaccepteerd: (10)
     * Type: teamgeaccepteerd
     * String: _teamnaam_
     * Boolean: _geaccepteerd_
-  * Kwiz starten:
+  * Kwiz starten: (11)
     * Type: startkwiz
-  * Ronde starten:
+  * Ronde starten: (13)
     * Type: startronde
     * Array[String]: _3 categorieën_
-  * Kwiz stoppen:
+  * Kwiz stoppen: (14)
     * Type: stopkwiz
-  * Vraag starten
+  * Vraag starten (16)
     * Type: startvraag
     * {
         ObjectID: _id,
@@ -175,21 +193,14 @@ Hieronder volgen de screenshots voor elke SPA:
         String: answer,
         String: category
       }: _vraag_
-  * Vraag stoppen:
+  * Vraag stoppen: (17)
     * Type: stopvraag
-  * Antwoord gecontroleerd:
+  * Antwoord gecontroleerd: (19)
     * Type: antwoordgecontroleerd
     * String: _teamnaam_
     * Boolean: _goedgekeurd_
-  * Volgende:
+  * Volgende: (20)
     * Type: volgende
-  * Team aanmelden:
-    * Type: aanmeldenteam
-    * String: _code_
-    * String: _teamnaam_
-  * Ontvangst antwoord:
-    * Type: ontvangstantwoord
-    * String: _antwoord_
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
@@ -198,40 +209,44 @@ De omschrijvingen zijn als volgt opgebouwd:
   * _Omschrijving pagina_
 
 ### Team-app
-* (1) aanmelden
+* (scherm 1) aanmelden
   * Op dit scherm kan het team zich aanmelding door middel van het invoeren van de code en het opgeven van de teamnaam. Aan de onderzijde van het scherm kunnen meldingen verschijnen zoals de melding dat de teamnaam al gekozen is.
-* (2) kwiz
+* (scherm 2) kwiz
   * Op dit scherm wordt de kwiz gespeelt en ook hier kunnen meldingen verschijnen aan de onderzijde van het scherm.
-* (3) kwizgesloten
+* (scherm 3) kwizgesloten
   * Dit scherm wordt weergegeven als de kwiz wordt gesloten. Er is een knop om terug te gaan naar het aanmeldscherm.
 
 ### KwizMeestert-app
-* (1) kwizstarten
+* (scherm 1) kwizstarten
   * Op dit scherm kan de kwizmeestert een code invoeren en de kwiz starten.
-* (2) teamsaccepteren
+* (scherm 2) teamsaccepteren
   * Hier worden alle teams die zich aanmelden getoond en kan de kwizmeestert de teams accepteren. Er is ook een knop om de kwiz te starten.
-* (3) rondestarten
+* (scherm 3) rondestarten
   * Er kunnen 3 categorieën gekozen worden en een ronde kan worden gestart. De kwiz kan op dit scherm ook worden gestopt.
-* (4) vragenkiezen
+* (scherm 4) vragenkiezen
   * Op dit scherm worden vragen getoond waaruit er 1 kan worden geselecteerd. De vraag kan in dit scherm worden gestart en vervolgens gestopt.
-* (5) antwoordcontroleren
+* (scherm 5) antwoordcontroleren
   * De antwoorden per team verschijnen in dit scherm en kunnen goedgekeurd of afgekeurd worden. Onderaan staat een knop om naar de volgende vraag te gaan.
 
 ### Scorebord-app
-* (1) voorafkwiz
+* (scherm 1) voorafkwiz
   * Het wachtwoord en de deelnemende teams worden weergegeven.
-* (2) actievevraag
+* (scherm 2) actievevraag
   * De voortgang, huidige vraag en categorie en de teamnamen van de teams die antwoord hebben gegeven.
-* (3) beoordelingvraag
+* (scherm 3) beoordelingvraag
   * De voortgang en een overzicht van de goed- of foutgekeurde atwoorden en score per team worden weergegeven.
-* (4) achterafkwiz
+* (scherm 4) achterafkwiz
   * De teamnamen plus hun scores worden weergegeven.
 
+In de server zal gebruik worden gemaakt van `app.use.static` om naar de clients te gaan.
+Dit zal er voor zorgen dat problemen met links als `localhost:3000/teams/vraag` niet optreden, maar de client de index ophaalt als je  direct naar deze link gaat.
+
 ## Redux
-* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk.
+* Als het nodig is zal dit alleen bij de kwismeestert worden toegepast. Bij de rest is het niet noodzakelijk omdat hier geen informatie in de state wordt opgeslagen.
 
 ## Mongoose / Mongo model
-Hieronder het model voor de database:
+Hieronder het model voor de database. We hebben ervoor gekozen de categorieën niet appart op te nemen omdat er niet veel vragen in de database staan. Als de categorieën moeten worden opgehaald hoeven er niet veel (minder dan 1000) vragen worden doorgenomen, deze actie neemt niet veel tijd in beslag. 
+Daarnaast is het niet nodig er nu een string staat in het veld 'category', als de categorieën appart worden opgenomen staat er een verwijzing. Dit maakt in feite niet veel uit.
 
 ![databaseSchema](databaseSchema.png)
 
@@ -239,12 +254,13 @@ Wij hebben ervoor gekozen alleen de vragen in de database op te slaan, alle verd
 Dit willen we doen door het aanmaken van een object. Hieronder volgt de implementatie daarvan:
 
 ```js
-let state = {
+let session = {
     kwizzen: [{
         code: "",
         kwizmeestertSocket: null,
         beamerSocket: null,
         gesteldeVragen: [],
+        huidigeronde: [],
         huidigevraag: {
             vraag: "",
             antwoord: ""
@@ -252,6 +268,7 @@ let state = {
         teams : [{
             teamSocket: null,
             teamnaam: "",
+            geaccepteerd: Boolean,
             huidigAntwoord: "",
             rondepunten : 0,
             vragenGoed: 0
@@ -260,6 +277,8 @@ let state = {
 };
 ```
 Het opslaan van dit object in het geheugen heeft een aantal voordelen. Via dit object zal sneller te vinden zijn naar welke sockets wat gestuurd moet worden, in plaats van aan de socketserver de lijst sockets steeds door te lopen. Als alternatief zouden alle gerelateerde sockets opgeslagen kunnen worden in de socket zelf. Dit werd afgeraden omdat de structuur van een extern object veranderd wordt en omdat alle data dan op meerdere plekken opgeslagen moet worden.
+Een nadeel van het opslaan in het geheugen is dat de kwiz op deze manier niet extern wordt opgeslagen. Mocht er nu een fout optreden zodat de applicatie crasht is het na restart niet mogelijk om verder te gaan waar men gebleven was.
+De voordelen zijn op dit moment belangrijker dan de nadelen omdat het er in deze applicatie niet om gaat dat de kwiz moet worden opgeslagen. Dit is een functionaliteit die later eventueel kan worden ingebouwd. Snelheid is daarentegen belangrijk in deze applicatie.
 
 
 ## Externe libs
