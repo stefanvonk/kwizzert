@@ -60,7 +60,7 @@ Een real-time webapplicatie om in teamverband quizzen te spelen.
 
 
 ## Low fidelity designs
-Hieronder volgen de screenshots voor elke SPA:
+Hieronder volgen de screenshots voor elke SPA. In de afbeeldingen zijn getallen opgenomen die verwijzen naar de getallen in het hoofdstuk communicatie. Hiermee wordt duidelijk waar welke communicatie plaatsvindt.
 ### De Team-app - Smartphone
 ![Smartphone Screenshot](Smartphone.jpg)
 
@@ -74,9 +74,9 @@ Hieronder volgen de screenshots voor elke SPA:
 ![Deployment Diagram](DeploymentDiagram.png)
 
 ## Communicatie protocol
-* We zullen in deze app alleen comuniceren via websockets omdat de dataoverdracht klein is.
+* We zullen in deze app alleen communiceren via websockets omdat de dataoverdracht klein is.
 
-De comunicatie via ws zal op de volgende manier worden gedefineerd als objecten:
+De communicatie via ws zal op de volgende manier worden gedefineerd als objecten:
 ```js
 object: {
   naamvansocket: Type,
