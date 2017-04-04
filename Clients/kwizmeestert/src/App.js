@@ -13,9 +13,19 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+          <button onClick={maakVerbinding("startkwiz")}>
+              Activeer socket
+          </button>
       </div>
     );
   }
 }
 
 export default App;
+
+function maakVerbinding(tekst) {
+    var exampleSocket = new WebSocket("ws:localhost:3000/", "protocolOne");
+    exampleSocket.onopen = function (event) {
+        exampleSocket.send(tekst);
+    };
+}
