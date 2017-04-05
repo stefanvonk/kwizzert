@@ -9,6 +9,7 @@ var theWebSocketServer = new ws.Server({
 });
 var startkwizFile = require('./messages/startkwiz');
 var startkwizavondFile = require('./messages/startkwizavond');
+var aanmeldenteamFile = require('./messages/aanmeldenteam');
 var mongoose        = require('./DatabaseConnection/mongoose.js');
 
 var app = express();
@@ -18,7 +19,12 @@ var app = express();
 //Vul database met vragen als deze nog leeg is.(Mongo moet natuurlijk al wel draaien. database is op local host)
 let database = mongoose.getInstance();
 database.isEmpty(function (callback) {
-    if(callback) database.fillDatabase();
+    if(callback) {
+        database.fillDatabase();
+        console.log("Database 'Questions' aangemaakt.");
+    } else {
+        console.log("Database 'Questions' bestaat al.");
+    }
 });
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
@@ -41,13 +47,15 @@ theWebSocketServer.on('connection', function connection(websocket) {
         var data = JSON.parse(message.data);
         switch(data.type) {
             case "aanmeldenteam":
-                console.log("aanmeldenteam");
+                aanmeldenteamFile(data.code, data.teamnaam, session, websocket);
+                console.log(session);
                 break;
             case "ontvangstantwoord":
                 console.log("ontvangstantwoord");
                 break;
             case "startkwizavond":
-                startkwizavondFile(data.code);
+                startkwizavondFile(data.code, session, websocket);
+                console.log(session);
                 break;
             case "teamgeaccepteerd":
                 console.log("teamgeaccepteerd");
@@ -82,3 +90,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
         }
     });
 });
+
+let session = {
+    kwizzen: []
+};
