@@ -25,7 +25,6 @@ database.isEmpty(function (callback) {
     } else {
         console.log("Database 'Questions' bestaat al.");
     }
-
 });
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
