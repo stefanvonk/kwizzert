@@ -15,8 +15,16 @@ var app = express();
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false}));
 
-if(false){
-    mongoose.fillDatabase();
+//Vul database met vragen als deze nog leeg is.(Mongo moet natuurlijk al wel draaien. database is op local host)
+let database = mongoose.getInstance();
+database.isEmpty(function (callback) {
+    if(callback) database.fillDatabase();
+});
+
+if(true){
+    database.getAllCategories(function (callback){
+        console.log(callback);
+    });
 }
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
@@ -26,10 +34,6 @@ app.use('/', express.static(path.join(__dirname, '../Clients/scorebord/build')))
 app.use('/kwizmeestert', express.static(path.join(__dirname, '../Clients/kwizmeestert/build')));
 app.use('/team', express.static(path.join(__dirname, '../Clients/team/build')));
 app.use('/scorebord', express.static(path.join(__dirname, '../Clients/scorebord/build')));
-
-// app.get('/', function (req, res) {
-//     res.sendFile(path.join(__dirname + '/Clients/kwizmeestert/build/index.html'));
-// })
 
 theHttpServer.on('request', app);
 theHttpServer.listen( 3000,
