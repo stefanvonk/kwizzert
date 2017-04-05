@@ -21,12 +21,6 @@ database.isEmpty(function (callback) {
     if(callback) database.fillDatabase();
 });
 
-if(true){
-    database.getAllCategories(function (callback){
-        console.log(callback);
-    });
-}
-
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
 app.use('/', express.static(path.join(__dirname, '../Clients/team/build')));
 app.use('/', express.static(path.join(__dirname, '../Clients/kwizmeestert/build')));
