@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Link} from 'react-router'
 
 class App extends Component {
   render() {
@@ -16,6 +17,9 @@ class App extends Component {
           <button onClick={maakVerbinding("startkwiz")}>
               Activeer socket
           </button>
+          <p>
+              <Link to="/kwizmeestert/kwizstarten">Start kwiz</Link>
+          </p>
       </div>
     );
   }

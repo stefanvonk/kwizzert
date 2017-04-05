@@ -1,7 +1,24 @@
-import React from 'react'
+// import React from 'react'
+//
+// export default React.createClass({
+//     render() {
+//         return <div>Kwizstarten</div>
+//     }
+// })
 
-export default React.createClass({
+
+import React, { Component } from 'react';
+
+class KwizStarten extends Component {
+
+
     render() {
-        return <div>Kwizstarten</div>
+        return (
+            <div>Kwizstarten</div>
+        );
     }
-})
+}
+
+
+
+export default KwizStarten;

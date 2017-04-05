@@ -7,11 +7,12 @@ import teamsaccepteren from './modules/teamsaccepteren'
 import { Router, Route, browserHistory } from 'react-router'
 
 ReactDOM.render(
-    <App />,
-  // <Router history={browserHistory}>
-  //   <Route path="/" component={App}/>
-  //   <Route path="/kwizstarten" component={kwizstarten}/>
-  //   <Route path="/teamsaccepteren" component={teamsaccepteren}/>
-  // </Router>,
+    // <App />,
+  <Router history={browserHistory}>
+    <Route path="/" component={App}/>
+      <Route path="/kwizmeestert" component={App}/>
+    <Route path="/kwizmeestert/kwizstarten" component={kwizstarten}/>
+    <Route path="/kwizmeestert/teamsaccepteren" component={teamsaccepteren}/>
+  </Router>,
   document.getElementById('root')
 );
