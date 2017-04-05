@@ -14,9 +14,7 @@ var Question = mongoose.model("Questions", questionSchema);
 class Mongo {
 
     static getInstance(){
-        console.log("database: " + this.database);
         if(this.database == undefined) {
-            console.log("Komt in de if.");
             this.database = new Mongo();
         }
         return this.database;
