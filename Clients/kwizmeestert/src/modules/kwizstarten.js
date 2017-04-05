@@ -3,7 +3,7 @@ import './../App.css';
 import { Button, FormControl } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-var socketKwizmeestert = new WebSocket("ws:localhost:3000/", "protocolOne");
+var socketKwizmeestert = new WebSocket("ws:localhost:3000/");
 socketKwizmeestert.onopen = function (event) {};
 
 var data = {
