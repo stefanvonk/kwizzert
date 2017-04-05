@@ -15,10 +15,16 @@ var app = express();
 // app.use(bodyParser.urlencoded({extended:false}));
 
 //Vul database met vragen als deze nog leeg is.(Mongo moet natuurlijk al wel draaien. database is op local host)
-let database = new mongoose();
+let database = mongoose.getInstance();
 database.isEmpty(function (callback) {
     if(callback) database.fillDatabase();
 });
+
+if(true){
+    database.getAllCategories(function (callback){
+        console.log(callback);
+    });
+}
 
 //Nog een keer naar kijken waarom dit werkt en hoe dit beter kan.
 app.use('/', express.static(path.join(__dirname, '../Clients/team/build')));
