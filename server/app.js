@@ -43,6 +43,7 @@ theHttpServer.listen( 3000,
     });
 
 theWebSocketServer.on('connection', function connection(websocket) {
+    websocket.onopen = function (event) {};
     console.log("CONNECTION CREATED");
     websocket.onmessage = function incoming(message) {
         var data = JSON.parse(message.data);
@@ -57,6 +58,11 @@ theWebSocketServer.on('connection', function connection(websocket) {
             case "startkwizavond":
                 startkwizavondFile(data.code, session, websocket);
                 console.log(session);
+                var data = {
+                    type: "kwizavondgestart",
+                    boolean: true
+                };
+                websocket.send(JSON.stringify(data))
                 break;
             case "teamgeaccepteerd":
                 console.log("teamgeaccepteerd");

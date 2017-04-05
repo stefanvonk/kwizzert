@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import './../App.css';
+import { Button, FormControl } from 'react-bootstrap';
 
 var socketKwizmeestert = new WebSocket("ws:localhost:3000/", "protocolOne");
 socketKwizmeestert.onopen = function (event) {};
@@ -8,6 +10,13 @@ var data = {
     code: ""
 };
 
+socketKwizmeestert.onmessage = function incoming(message) {
+    var data = JSON.parse(message.data);
+    if(data.type === "kwizavondgestart") {
+        console.log("We zitten in de if")
+    }
+};
+
 export default React.createClass({
     onChangeCode() {
         this.setState({typed: event.target.value});
@@ -15,17 +24,17 @@ export default React.createClass({
 
     handleClick() {
         data.code = this.state.typed;
-        if(this.state.typed != ''){
+        if (this.state.typed != '') {
             socketKwizmeestert.send(JSON.stringify(data));
         }
     },
 
     render() {
         return (
-            <div className="kwizstarten">
+            <div className="App">
                 <h1>Kwizavond starten</h1>
-                <input type="text" onChange= {(e) => this.onChangeCode(e)}/>
-                <button onClick={(e) => this.handleClick(e)}>Starten</button>
+                <FormControl className="width80" type="text" onChange= {(e) => this.onChangeCode(e)}/>
+                <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Starten</Button>
             </div>
         );
     }
