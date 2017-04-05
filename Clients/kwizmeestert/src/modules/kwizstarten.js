@@ -1,24 +1,32 @@
-// import React from 'react'
-//
-// export default React.createClass({
-//     render() {
-//         return <div>Kwizstarten</div>
-//     }
-// })
+import React from 'react'
 
+var socketKwizmeestert = new WebSocket("ws:localhost:3000/", "protocolOne");
+socketKwizmeestert.onopen = function (event) {};
 
-import React, { Component } from 'react';
+var data = {
+    type: "startkwizavond",
+    code: ""
+};
 
-class KwizStarten extends Component {
+export default React.createClass({
+    onChangeCode() {
+        this.setState({typed: event.target.value});
+    },
 
+    handleClick() {
+        data.code = this.state.typed;
+        if(this.state.typed != ''){
+            socketKwizmeestert.send(JSON.stringify(data));
+        }
+    },
 
     render() {
         return (
-            <div>Kwizstarten</div>
+            <div className="kwizstarten">
+                <h1>Kwizavond starten</h1>
+                <input type="text" onChange= {(e) => this.onChangeCode(e)}/>
+                <button onClick={(e) => this.handleClick(e)}>Starten</button>
+            </div>
         );
     }
-}
-
-
-
-export default KwizStarten;
+})
