@@ -1,6 +1,7 @@
 import React from 'react';
 import './../App.css';
 import { Button, FormControl } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 var socketKwizmeestert = new WebSocket("ws:localhost:3000/", "protocolOne");
 socketKwizmeestert.onopen = function (event) {};
@@ -13,7 +14,9 @@ var data = {
 socketKwizmeestert.onmessage = function incoming(message) {
     var data = JSON.parse(message.data);
     if(data.type === "kwizavondgestart") {
-        console.log("We zitten in de if")
+        if(data.geaccepteerd){
+            browserHistory.push('/kwizmeestert/teamsaccepteren');
+        }
     }
 };
 
