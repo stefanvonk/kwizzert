@@ -9,7 +9,7 @@ var theWebSocketServer = new ws.Server({
 });
 var startkwiz = require('./messages/startkwiz');
 var startkwizavond = require('./messages/startkwizavond');
-var aanmeldenteamFile = require('./messages/aanmeldenteam');
+var aanmeldenteam = require('./messages/aanmeldenteam');
 var mongoose        = require('./DatabaseConnection/mongoose.js');
 
 var app = express();
@@ -47,7 +47,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
         var data = JSON.parse(message.data);
         switch(data.type) {
             case "aanmeldenteam":
-                aanmeldenteamFile(data.code, data.teamnaam, session, websocket);
+                aanmeldenteam(data.code, data.teamnaam, session, websocket);
                 console.log(session);
                 break;
             case "ontvangstantwoord":

@@ -20,17 +20,17 @@ socketKwizmeestert.onmessage = function incoming(message) {
     }
 };
 
-export default React.createClass({
+class Kwizstarten extends React.Component {
     onChangeCode() {
         this.setState({typed: event.target.value});
-    },
+    }
 
     handleClick() {
         data.code = this.state.typed;
         if (this.state.typed != '') {
             socketKwizmeestert.send(JSON.stringify(data));
         }
-    },
+    }
 
     render() {
         return (
@@ -41,4 +41,6 @@ export default React.createClass({
             </div>
         );
     }
-})
+}
+
+module.exports = Kwizstarten;
