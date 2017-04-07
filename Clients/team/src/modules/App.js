@@ -21,6 +21,9 @@ class App extends Component {
             let data = JSON.parse(message.data);
             if(data.Type === "teamgeaccepteerd") {
                 that.onMeldingChange(data.melding);
+                if(data.melding === "geaccepteerd"){
+                    browserHistory.push('/kwizmeestert/teamsaccepteren');
+                }
             }
         };
     }
@@ -41,7 +44,7 @@ class App extends Component {
       const { children } = this.props
       return (
           <div>
-              { children && React.cloneElement(children, { webSocket:this.state.webSocket, teamNaam: this.state.teamNaam, onTeamNaamChange: this.onTeamNaamChange.bind(this) }) }
+              { children && React.cloneElement(children, { webSocket:this.state.webSocket, melding: this.state.melding, onTeamNaamChange: this.onTeamNaamChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this) }) }
           </div>
       )
   }

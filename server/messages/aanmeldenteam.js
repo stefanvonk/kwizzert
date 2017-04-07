@@ -1,23 +1,26 @@
 var functie = function(code, teamnaam, session, websocket){
+    let returnSocket;
     const kwiz = session.kwizzen.find(x => x.code === code);
-    //check of teamnaam al bestaat.
     if(kwiz){
         kwiz.teams.push({teamSocket: websocket, teamnaam:teamnaam});
-        websocket = kwiz.kwizmeestertSocket;
+        console.log(kwiz)
+
+        returnSocket = kwiz.kwizmeestertSocket;
         data = {
             Type: "teamaangemeld",
             teamnaam: teamnaam
         }
     } else{
-        console.log("komt in else");
+        returnSocket = websocket;
         data = {
             Type: "teamgeaccepteerd",
             melding: "Niet Geaccepteerd"
         }
     }
 
-    websocket.onopen = function (event) {};
-    websocket.send(JSON.stringify(data))
+    returnSocket.onopen = function (event) {};
+    returnSocket.send(JSON.stringify(data))
+    return session;
 };
 
 module.exports = functie;

@@ -47,9 +47,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
         var data = JSON.parse(message.data);
         switch(data.type) {
             case "aanmeldenteam":
-                aanmeldenteam(data.code, data.teamnaam, session, websocket);
-                console.log("Aanmelden team. code:" + data.code + " teamnaam:" + data.teamnaam);
-                console.log(session);
+                session = aanmeldenteam(data.code, data.teamnaam, session, websocket);
                 break;
             case "ontvangstantwoord":
                 console.log("ontvangstantwoord");

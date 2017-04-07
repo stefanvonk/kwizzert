@@ -37,11 +37,13 @@ class Aanmelden extends React.Component {
                 })
             );
         }
+        this.props.onMeldingChange(".....");
     }
 
     render() {
         return (
             <div className="App">
+                <h1>Aanmelden bij quiz.</h1>
                 <div>
                     <h3>Teamnaam:</h3>
                     <input value={this.state.teamNaam} onChange= {(e) => this.onChangeTeamName(e)}/>
@@ -50,9 +52,12 @@ class Aanmelden extends React.Component {
                     <h3>Code:</h3>
                     <input value={this.state.code} onChange= {(e) => this.onChangeCode(e)}/>
                 </div>
-                    <div>
-                        <Button bsStyle="primary" onClick={() => this.handleClick()}>Starten</Button>
-                    </div>
+                <div>
+                    <Button bsStyle="primary" onClick={() => this.handleClick()}>Aanmelden</Button>
+                </div>
+                <div>
+                    Melding: {this.props.melding}
+                </div>
             </div>
         );
     }

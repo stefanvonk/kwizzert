@@ -23,14 +23,7 @@ var functie = function(code, session, websocket){
                     vraag: "",
                     antwoord: ""
                 },
-                teams : [{
-                    teamSocket: null,
-                    teamnaam: "",
-                    geaccepteerd: Boolean,
-                    huidigAntwoord: "",
-                    rondepunten : 0,
-                    vragenGoed: 0
-                }]
+                teams : []
             }
         );
     }
