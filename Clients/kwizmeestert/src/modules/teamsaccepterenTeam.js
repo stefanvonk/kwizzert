@@ -31,8 +31,8 @@ class TeamsaccepterenTeam extends React.Component {
         return (
             <div>
                 <h2>{this.props.text}</h2>
-                <Button bsStyle="Success" onClick={() => this.teamAccepteren(this.props.text)}>Accepteren</Button>
-                <Button bsStyle="Danger" onClick={() => this.teamWeigeren(this.props.text)}>Weigeren</Button>
+                <Button bsStyle="success" onClick={() => this.teamAccepteren(this.props.text)}>Accepteren</Button>
+                <Button bsStyle="danger" onClick={() => this.teamWeigeren(this.props.text)}>Weigeren</Button>
             </div>
         );
     }

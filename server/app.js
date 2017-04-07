@@ -60,7 +60,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 console.log("teamgeaccepteerd");
                 break;
             case "startkwiz":
-                startkwiz();
+                startkwiz(websocket);
                 break;
             case "startronde":
                 console.log("startronde");

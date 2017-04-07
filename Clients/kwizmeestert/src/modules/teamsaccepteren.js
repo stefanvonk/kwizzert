@@ -18,7 +18,6 @@ class Teamsaccepteren extends React.Component {
         var that = this;
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
-            console.log(message.teamnaam);
             if(data.Type === "teamaangemeld") {
                 that.state.teams.push(data.teamnaam);
                 that.setState({
@@ -29,6 +28,7 @@ class Teamsaccepteren extends React.Component {
     }
 
     startButton() {
+        // deze moet nog aangepast worden of er echt als teams zijn geaccepteerd
         if(this.state.teams.length >= 2) {
             var data = {
                 Type: "startkwiz"
