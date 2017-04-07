@@ -48,6 +48,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
         switch(data.type) {
             case "aanmeldenteam":
                 aanmeldenteam(data.code, data.teamnaam, session, websocket);
+                console.log("Aanmelden team. code:" + data.code + " teamnaam:" + data.teamnaam);
                 console.log(session);
                 break;
             case "ontvangstantwoord":

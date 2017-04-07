@@ -8,7 +8,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 ReactDOM.render(
     <Router history={browserHistory}>
         <Route path="/team" component={App}>
-            <IndexRoute path="/team/aanmelden" component={Aanmelden}/>
+            <IndexRoute component={Aanmelden}/>
         </Route>
     </Router>,
   document.getElementById('root')

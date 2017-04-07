@@ -6,14 +6,16 @@ class Aanmelden extends React.Component {
         super(props);
 
         this.state = {
-            teamName: "",
+            teamNaam: "",
             code: ""
         }
+
+        this.props.webSocket.onopen = function (event) {};
     }
 
     onChangeTeamName(e) {
         this.setState({
-            teamName: e.target.value,
+            teamNaam: e.target.value,
         });
     }
 
@@ -23,23 +25,33 @@ class Aanmelden extends React.Component {
         });
     }
 
-    handleClick(e) {
-        // Send something in socket.
+    handleClick() {
+        this.props.onTeamNaamChange(this.state.teamNaam);
+
+        if (this.state.teamNaam !== "" && this.state.code !== "") {
+            this.props.webSocket.send(
+                JSON.stringify({
+                    type: "aanmeldenteam",
+                    code: this.state.code,
+                    teamnaam: this.state.teamNaam
+                })
+            );
+        }
     }
 
     render() {
         return (
             <div className="App">
                 <div>
-                    <h3>Teamnaam: {this.state.teamName}</h3>
-                    <input value={this.state.teamName} onChange= {(e) => this.onChangeTeamName(e)}/>
+                    <h3>Teamnaam:</h3>
+                    <input value={this.state.teamNaam} onChange= {(e) => this.onChangeTeamName(e)}/>
                 </div>
                 <div>
-                    <h3>Code: {this.state.code}</h3>
+                    <h3>Code:</h3>
                     <input value={this.state.code} onChange= {(e) => this.onChangeCode(e)}/>
                 </div>
                     <div>
-                        <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Starten</Button>
+                        <Button bsStyle="primary" onClick={() => this.handleClick()}>Starten</Button>
                     </div>
             </div>
         );
