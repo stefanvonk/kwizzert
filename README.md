@@ -91,7 +91,7 @@ object: {
 * ws 
   * Verificatie geaccepteerd: (2)
     * Type: teamgeaccepteerd
-    * String: _melding_
+    * String: _melding_ ("geaccepteerd", "code niet correct", "niet geaccepteerd")
   * Ontvangst vraag: (3)
     * Type: ontvangstvraag
     * String: _vraag_
