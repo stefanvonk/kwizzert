@@ -1,29 +1,27 @@
 import React from 'react'
-import './../App.css';
 import { Button } from 'react-bootstrap';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
-import TeamsaccepterenTeam from './teamsaccepterenTeam';
-
-const socketKwizmeestert = new WebSocket("ws:localhost:3000/");
-socketKwizmeestert.onopen = function (event) {};
+import TeamsaccepterenTeam from './teamsaccepterenTeam'
 
 class Teamsaccepteren extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: ["team1"]
+            teams: ["team1", "team2"]
         };
+
+        this.props.webSocket.onopen = function (event) {};
     }
 
     componentDidMount() {
         var that = this;
-        socketKwizmeestert.onmessage = function incoming(message) {
+        this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.type === "teamaangemeld") {
                 that.state.teams.push(message.teamnaam);
                 that.setState({
-                    teams: this.that.state.teams
+                    teams: that.state.teams
                 });
             }
         };
@@ -34,7 +32,7 @@ class Teamsaccepteren extends React.Component {
             var data = {
                 type: "startkwiz"
             };
-            socketKwizmeestert.send(JSON.stringify(data));
+            this.props.webSocket.send(JSON.stringify(data));
         }else {
             console.log("Er moeten zich minimaal 2 teams aanmelden.");
         }
@@ -47,7 +45,7 @@ class Teamsaccepteren extends React.Component {
                 <div>
                     {this.state.teams.map((item, index) =>
                         <div>
-                            <TeamsaccepterenTeam text={item}/>
+                            <TeamsaccepterenTeam webSocket={this.props.webSocket} text={item} />
                         </div>
                     )}
                 </div>
