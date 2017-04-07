@@ -1,9 +1,5 @@
 import React from 'react'
-import './../App.css';
 import { Button } from 'react-bootstrap';
-
-const socketKwizmeestert = new WebSocket("ws:localhost:3000/");
-socketKwizmeestert.onopen = function (event) {};
 
 var data = {
     type: "teamgeaccepteerd",
@@ -12,18 +8,23 @@ var data = {
 };
 
 class TeamsaccepterenTeam extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+
     teamAccepteren(teamnaam){
         data.teamnaam = teamnaam;
         data.geaccepteerd = true;
         console.log(data);
-        socketKwizmeestert.send(JSON.stringify(data));
+        this.props.webSocket.send(JSON.stringify(data));
     }
 
     teamWeigeren(teamnaam){
         data.teamnaam = teamnaam;
         data.geaccepteerd = false;
         console.log(data);
-        socketKwizmeestert.send(JSON.stringify(data));
+        this.props.webSocket.send(JSON.stringify(data));
     }
 
     render() {

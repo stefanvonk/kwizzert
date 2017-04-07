@@ -1,26 +1,30 @@
 import React from 'react';
-import './../App.css';
 import { Button, FormControl } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-const socketKwizmeestert = new WebSocket("ws:localhost:3000/");
-socketKwizmeestert.onopen = function (event) {};
 
 var data = {
     type: "startkwizavond",
     code: ""
 };
 
-socketKwizmeestert.onmessage = function incoming(message) {
-    var data = JSON.parse(message.data);
-    if(data.type === "kwizavondgestart") {
-        if(data.geaccepteerd){
-            browserHistory.push('/kwizmeestert/teamsaccepteren');
-        }
-    }
-};
-
 class Kwizstarten extends React.Component {
+    constructor(props) {
+        super(props);
+        this.props.webSocket.onopen = function (event) {};
+    }
+
+    componentDidMount() {
+        this.props.webSocket.onmessage = function incoming(message) {
+            var data = JSON.parse(message.data);
+            if(data.type === "kwizavondgestart") {
+                if(data.geaccepteerd){
+                    browserHistory.push('/kwizmeestert/teamsaccepteren');
+                }
+            }
+        };
+    }
+
     onChangeCode() {
         this.setState({typed: event.target.value});
     }
@@ -28,7 +32,7 @@ class Kwizstarten extends React.Component {
     handleClick() {
         data.code = this.state.typed;
         if (this.state.typed != '') {
-            socketKwizmeestert.send(JSON.stringify(data));
+            this.props.webSocket.send(JSON.stringify(data));
         }
     }
 
