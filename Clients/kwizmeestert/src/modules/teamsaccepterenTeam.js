@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap';
 
 var data = {
-    type: "teamgeaccepteerd",
+    Type: "teamgeaccepteerd",
     teamnaam: "",
     geaccepteerd: true
 };

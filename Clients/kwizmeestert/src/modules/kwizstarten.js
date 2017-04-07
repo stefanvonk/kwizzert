@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 
 
 var data = {
-    type: "startkwizavond",
+    Type: "startkwizavond",
     code: ""
 };
 
@@ -17,7 +17,7 @@ class Kwizstarten extends React.Component {
     componentDidMount() {
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
-            if(data.type === "kwizavondgestart") {
+            if(data.Type === "kwizavondgestart") {
                 if(data.geaccepteerd){
                     browserHistory.push('/kwizmeestert/teamsaccepteren');
                 }

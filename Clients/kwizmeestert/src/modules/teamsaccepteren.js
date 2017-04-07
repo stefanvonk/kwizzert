@@ -8,7 +8,7 @@ class Teamsaccepteren extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: ["team1", "team2"]
+            teams: []
         };
 
         this.props.webSocket.onopen = function (event) {};
@@ -18,8 +18,9 @@ class Teamsaccepteren extends React.Component {
         var that = this;
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
-            if(data.type === "teamaangemeld") {
-                that.state.teams.push(message.teamnaam);
+            console.log(message.teamnaam);
+            if(data.Type === "teamaangemeld") {
+                that.state.teams.push(data.teamnaam);
                 that.setState({
                     teams: that.state.teams
                 });
@@ -30,9 +31,10 @@ class Teamsaccepteren extends React.Component {
     startButton() {
         if(this.state.teams.length >= 2) {
             var data = {
-                type: "startkwiz"
+                Type: "startkwiz"
             };
             this.props.webSocket.send(JSON.stringify(data));
+            browserHistory.push('/kwizmeestert/rondestarten');
         }else {
             console.log("Er moeten zich minimaal 2 teams aanmelden.");
         }
