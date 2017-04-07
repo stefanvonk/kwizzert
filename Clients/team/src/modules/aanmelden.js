@@ -31,7 +31,7 @@ class Aanmelden extends React.Component {
         if (this.state.teamNaam !== "" && this.state.code !== "") {
             this.props.webSocket.send(
                 JSON.stringify({
-                    type: "aanmeldenteam",
+                    Type: "aanmeldenteam",
                     code: this.state.code,
                     teamnaam: this.state.teamNaam
                 })

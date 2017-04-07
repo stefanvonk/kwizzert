@@ -2,7 +2,7 @@ var functie = function(code, session, websocket){
     websocket.onopen = function (event) {};
 
     var data = {
-        type: "kwizavondgestart",
+        Type: "kwizavondgestart",
         geaccepteerd: true
     };
     session.kwizzen.forEach(function (kwiz){
