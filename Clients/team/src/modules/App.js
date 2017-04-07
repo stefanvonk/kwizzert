@@ -11,7 +11,8 @@ class App extends Component {
         this.state = {
             teamNaam: "",
             melding: "",
-            webSocket: webSocket
+            webSocket: webSocket,
+            huidigeVraag: "Wachten op vraag..."
         }
     }
 
@@ -22,8 +23,14 @@ class App extends Component {
             if(data.Type === "teamgeaccepteerd") {
                 that.onMeldingChange(data.melding);
                 if(data.melding === "geaccepteerd"){
-                    browserHistory.push('/kwizmeestert/teamsaccepteren');
+                    browserHistory.push('/team/kwiz');
                 }
+            } else if(data.Type === "ontvangstvraag") {
+                that.onHuidigeVraagChange(data.vraag);
+            } else if(data.Type === "afbrekenvraag") {
+                that.onHuidigeVraagChange("Wachten op vraag...");
+            } else if(data.Type === "kwizgestopt") {
+                browserHistory.push('/team/kwizgesloten');
             }
         };
     }
@@ -40,11 +47,17 @@ class App extends Component {
         });
     }
 
+    onHuidigeVraagChange(huidigeVraag){
+        this.setState({
+            huidigevraag: huidigeVraag
+        })
+    }
+
     render() {
       const { children } = this.props
       return (
           <div>
-              { children && React.cloneElement(children, { webSocket:this.state.webSocket, melding: this.state.melding, onTeamNaamChange: this.onTeamNaamChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this) }) }
+              { children && React.cloneElement(children, { webSocket:this.state.webSocket, melding: this.state.melding, huidigeVraag:this.state.huidigeVraag, onTeamNaamChange: this.onTeamNaamChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this) }) }
           </div>
       )
   }

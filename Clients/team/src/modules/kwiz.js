@@ -9,7 +9,7 @@ class Kwiz extends React.Component {
             teamNaam: "",
             huidigeVraag: "Wachten op vraag...",
             huidigAntwoord: ""
-        }
+        };
 
         this.props.webSocket.onopen = function (event) {
         };
@@ -35,7 +35,7 @@ class Kwiz extends React.Component {
         render() {
             return (
                 <div className="App">
-                    <h1>{this.state.huidigeVraag}</h1>
+                    <h1>{this.props.huidigeVraag}</h1>
                     <div>
                         <h3>Antwoord:</h3>
                         <input value={this.state.huidigAntwoord} onChange= {(e) => this.onChangeHuidigAntwoord(e)}/>

@@ -3,7 +3,6 @@ var functie = function(code, teamnaam, session, websocket){
     const kwiz = session.kwizzen.find(x => x.code === code);
     if(kwiz){
         kwiz.teams.push({teamSocket: websocket, teamnaam:teamnaam});
-        console.log(kwiz)
 
         returnSocket = kwiz.kwizmeestertSocket;
         data = {

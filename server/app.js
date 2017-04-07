@@ -1,18 +1,19 @@
-var express     = require('express');
+const express     = require('express');
 // var bodyParser  = require('body-parser');
-var path        = require('path');
-var ws                 = require('ws');
-var http               = require('http');
-var theHttpServer      = http.createServer();
-var theWebSocketServer = new ws.Server({
+const path        = require('path');
+const ws                 = require('ws');
+const http               = require('http');
+const theHttpServer      = http.createServer();
+const theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
-var startkwiz = require('./messages/startkwiz');
-var startkwizavond = require('./messages/startkwizavond');
-var aanmeldenteam = require('./messages/aanmeldenteam');
-var mongoose        = require('./DatabaseConnection/mongoose.js');
+const startkwiz = require('./messages/startkwiz');
+const startkwizavond = require('./messages/startkwizavond');
+const aanmeldenteam = require('./messages/aanmeldenteam');
+const teamGeaccepteerd = require('./messages/teamGeaccepteerd');
+const mongoose        = require('./DatabaseConnection/mongoose.js');
 
-var app = express();
+const app = express();
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:false}));
 
@@ -44,7 +45,7 @@ theHttpServer.listen( 3000,
 theWebSocketServer.on('connection', function connection(websocket) {
     console.log("CONNECTION CREATED");
     websocket.onmessage = function incoming(message) {
-        var data = JSON.parse(message.data);
+        let data = JSON.parse(message.data);
         switch(data.Type) {
             case "aanmeldenteam":
                 session = aanmeldenteam(data.code, data.teamnaam, session, websocket);
@@ -57,7 +58,10 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 console.log(session);
                 break;
             case "teamgeaccepteerd":
-                console.log("teamgeaccepteerd");
+                teamGeaccepteerd(data.teamnaam, data.geaccepteerd, session, websocket);
+                session.kwizzen[0].teams.forEach(function (team) {
+                    console.log(team.teamnaam + ": " + team.geaccepteerd);
+                });
                 break;
             case "startkwiz":
                 startkwiz(websocket);
