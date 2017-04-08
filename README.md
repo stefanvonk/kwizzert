@@ -162,6 +162,9 @@ object: {
         String: teamnaam,
         Number: rondepunten
       }]: _scorelijst_
+  * Verificatie geaccepteerd: (29)
+    * Type: scorebordgeaccepteerd
+    * String: _melding_ ("geaccepteerd", "code niet correct")
 
 ### Server
 * ws
