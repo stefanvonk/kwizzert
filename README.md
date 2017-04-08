@@ -98,7 +98,7 @@ object: {
   * Vraag afbreken: (5)
     * Type: afbrekenvraag
   * Kwiz gestopt: (6)
-    * Type: Kwizgestopt
+    * Type: kwizgestopt
 
 ### KwizMeestert-app
 * ws
