@@ -208,6 +208,7 @@ object: {
     * String: _code_
   * Ontvangst teamantwoord: (30)
     * Type: ontvangstantwoord
+    * String: _code_
     * String: _antwoord_
 
 ## Componenten / Views / Routes
