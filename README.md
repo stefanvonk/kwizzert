@@ -145,6 +145,8 @@ object: {
     * String: _teamnaam_
   * Ontvangst teamgegevens: (25)
     * Type: scorebordteamgegevens
+    * Number: rondenummer
+    * Number: vraagnummer
     * Array[teams: {
         String: teamnaam,
         String: antwoord,
