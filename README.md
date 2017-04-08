@@ -136,12 +136,10 @@ object: {
     * String: _teamnaam_
   * Ontvangst vraag: (23)
     * Type: scorebordvraag
-    * {
-        Number: rondenummer,
-        Number: vraagnummer,
-        String: question,
-        String: category
-      }: _vraag_
+    * Number: rondenummer,
+    * Number: vraagnummer,
+    * String: vraag,
+    * String: categorie
   * Ontvangst teamnaam: (24)
     * Type: scorebordteamnaam
     * String: _teamnaam_
