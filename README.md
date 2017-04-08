@@ -155,6 +155,7 @@ object: {
       }]: _teamgegevens_
   * Gecontroleerd antwoord: (26)
     * Type: scorebordgecontroleerdantwoord
+    * String: _teamnaam_
     * Boolean: _correct_
   * Scorelijst ontvangen: (27)
     * Type: scorelijst
