@@ -7,10 +7,11 @@ const theHttpServer      = http.createServer();
 const theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
-const startronde = require('./messages/startronde');
+
 //Import Messages
 
 const mongoose        = require('./DatabaseConnection/mongoose.js');
+const startronde = require('./messages/startronde');
 const startkwiz = require('./messages/startkwiz');
 const startkwizavond = require('./messages/startkwizavond');
 const aanmeldenteam = require('./messages/aanmeldenteam');
