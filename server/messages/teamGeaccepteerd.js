@@ -11,6 +11,13 @@ var functie = function(teamnaam, geaccepteerd, session, websocket){
                     Type: "teamgeaccepteerd",
                     melding: "geaccepteerd"
                 }
+                let scorebordSocket = kwiz.beamerSocket;
+                let scorebordData = {
+                    Type: "geaccepteerdteam",
+                    teamnaam: teamnaam
+                }
+                scorebordSocket.onopen = function (event) {};
+                scorebordSocket.send(JSON.stringify(scorebordData));
             } else{
                 data = {
                     Type: "teamgeaccepteerd",

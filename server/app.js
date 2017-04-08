@@ -7,11 +7,14 @@ const theHttpServer      = http.createServer();
 const theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
+const mongoose        = require('./DatabaseConnection/mongoose.js');
+
+//Import Messages
 const startkwiz = require('./messages/startkwiz');
 const startkwizavond = require('./messages/startkwizavond');
 const aanmeldenteam = require('./messages/aanmeldenteam');
 const teamGeaccepteerd = require('./messages/teamGeaccepteerd');
-const mongoose        = require('./DatabaseConnection/mongoose.js');
+
 
 const app = express();
 // app.use(bodyParser.json());
@@ -83,6 +86,9 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 break;
             case "volgende":
                 console.log("volgende");
+                break;
+            case "aanmeldenscorebord":
+                iets
                 break;
         }
     };

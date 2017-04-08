@@ -8,24 +8,21 @@ class App extends Component {
         super(props);
         this.state = {
             webSocket: webSocket,
+            code: ""
         }
     }
 
-    componentDidMount(){
-        let that = this;
-        webSocket.onmessage = function incoming(message) {
-            let data = JSON.parse(message.data);
-            if(data.Type === "...") {
-                //DoeIets
-            }
-        };
+    onCodeChange(code) {
+        this.setState({
+            code: code
+        });
     }
 
     render() {
         const { children } = this.props
         return (
             <div>
-                { children && React.cloneElement(children, { webSocket:this.state.webSocket}) }
+                { children && React.cloneElement(children, { webSocket:this.state.webSocket, code:this.state.code}) }
             </div>
         )
     }
