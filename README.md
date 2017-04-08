@@ -205,8 +205,8 @@ object: {
     * Boolean: _goedgekeurd_
   * Volgende: (20)
     * Type: volgende
-  * Beamer aanmelden: (28)
-    * Type: aanmeldenbeamer
+  * Scorebord aanmelden: (28)
+    * Type: aanmeldenscorebord
     * String: _code_
 
 ## Componenten / Views / Routes
