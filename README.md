@@ -206,6 +206,9 @@ object: {
   * Scorebord aanmelden: (28)
     * Type: aanmeldenscorebord
     * String: _code_
+  * Ontvangst teamantwoord: (30)
+    * Type: ontvangstantwoord
+    * String: _antwoord_
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
