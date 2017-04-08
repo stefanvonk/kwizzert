@@ -1,13 +1,12 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
-import KiesCategorieen from './kiesCategorieen'
 
 class Rondestarten extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categorieen: []
+            categorieen: [],
         };
 
         this.props.webSocket.onopen = function (event) {};
@@ -27,15 +26,21 @@ class Rondestarten extends React.Component {
     }
 
     startRondeButton() {
-        if(this.state.teams.length >= 2) {
+        if(this.props.gekozenCategorieen.length === 3) {
             var data = {
-                Type: "startkwiz"
+                Type: "startronde",
+                categorieen: this.props.gekozenCategorieen
             };
+            console.log(this.props.gekozenCategorieen + "tweede");
             this.props.webSocket.send(JSON.stringify(data));
-            browserHistory.push('/kwizmeestert/rondestarten');
+            browserHistory.push('/kwizmeestert/vragenkiezen');
         }else {
-            console.log("Er moeten zich minimaal 2 teams aanmelden.");
+            console.log("Er moeten 3 categorieën gekozen zijn.");
         }
+    }
+
+    stopKwizButton() {
+        console.log("De kwiz is gestopt!")
     }
 
     render() {
@@ -44,14 +49,21 @@ class Rondestarten extends React.Component {
                 <h1>Ronde</h1>
                 <h2>Kies hieronder drie categorieën:</h2>
                 <div>
-                    {this.state.categorieen.map((item, index) =>
-                        <div>
-                            <KiesCategorieen webSocket={this.props.webSocket} text={item}/>
-                        </div>
-                    )}
+                    <form>
+                        {this.state.categorieen.map((item, index) =>
+                            <label>
+                                {item}
+                                <input
+                                name="categorieen"
+                                type="checkbox"
+                                onChange={() => this.props.gekozenCategorieen(item)} />
+                            </label>
+                        )}
+                    </form>
                 </div>
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startRondeButton()}>Ronde starten</Button>
+                <Button bsStyle="primary" onClick={() => this.stopKwizButton()}>Kwiz stoppen</Button>
             </div>
         );
     }

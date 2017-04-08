@@ -1,17 +1,17 @@
 const mongoose = require('./../DatabaseConnection/mongoose.js');
 
-var functie = function(websocket){
+var functie = function(websocket, categories){
     websocket.onopen = function (event) {};
-
     let database = mongoose.getInstance();
-    database.getAllCategories(function (callback){
-        callback.forEach(function (item) {
+
+    database.getQuestionsByCategories(categories, function (callback){
+        callback.forEach(function (question, index){
             let data = {
-                Type: "ontvangstcategorieen",
-                categorieen: item
+                Type: "ontvangstvragen",
+                vragen: question
             };
             websocket.send(JSON.stringify(data))
-        })
+        });
     });
 };
 

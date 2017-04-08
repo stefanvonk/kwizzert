@@ -5,6 +5,7 @@ import Kwizstarten from './modules/kwizstarten'
 import App from './modules/App'
 import Teamsaccepteren from './modules/teamsaccepteren'
 import Rondestarten from './modules/rondestarten'
+import Vragenkiezen from './modules/vragenkiezen'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
           <IndexRoute component={Kwizstarten}/>
           <Route path="/kwizmeestert/teamsaccepteren" component={Teamsaccepteren}/>
           <Route path="/kwizmeestert/rondestarten" component={Rondestarten}/>
+          <Route path="/kwizmeestert/vragenkiezen" component={Vragenkiezen}/>
         </Route>
       </Router>,
   document.getElementById('root')

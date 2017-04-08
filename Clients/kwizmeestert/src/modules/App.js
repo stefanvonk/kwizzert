@@ -9,8 +9,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            teamNaam: "",
-            melding: "",
+            gekozenCategorieen: [],
             webSocket: webSocket
         }
     }
@@ -37,11 +36,19 @@ class App extends Component {
     //     });
     // }
 
+    handleChangeCategorieen(catnaam) {
+        this.state.gekozenCategorieen.push(catnaam);
+        this.setState({
+            gekozenCategorieen: this.state.gekozenCategorieen
+        });
+        console.log(this.state.gekozenCategorieen + "eerste");
+    }
+
     render() {
-        const { children } = this.props
+        const { children } = this.props;
         return (
             <div>
-                { children && React.cloneElement(children, { webSocket:this.state.webSocket, teamNaam: this.state.teamNaam }) }
+                { children && React.cloneElement(children, { webSocket:this.state.webSocket, gekozenCategorieen:this.handleChangeCategorieen.bind(this) }) }
             </div>
         )
     }

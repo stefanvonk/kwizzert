@@ -7,6 +7,7 @@ const theHttpServer      = http.createServer();
 const theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
+const startronde = require('./messages/startronde');
 const startkwiz = require('./messages/startkwiz');
 const startkwizavond = require('./messages/startkwizavond');
 const aanmeldenteam = require('./messages/aanmeldenteam');
@@ -67,7 +68,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 startkwiz(websocket);
                 break;
             case "startronde":
-                console.log("startronde");
+                startronde(websocket, data.categorieen);
                 break;
             case "stopkwiz":
                 console.log("stopkwiz");

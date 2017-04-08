@@ -1,5 +1,4 @@
 import React from 'react'
-import { FormControl } from 'react-bootstrap';
 
 var data = {
     Type: "teamgeaccepteerd",
@@ -11,10 +10,13 @@ class KiesCategorieen extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isGoing: true
+        };
     }
 
     handleChange(catname){
-        console.log("Hij komt in de handleChange.")
+        console.log(catname);
         // this.state.categorieen.push(catname);
         // this.setState({
         //     categorieen: that.state.categorieen
@@ -23,14 +25,13 @@ class KiesCategorieen extends React.Component {
 
     render() {
         return (
-            <div>
-                <FormControl>
-                    <label>
-                        <input name={this.props.text} type="checkbox" onChange={() => this.handleChange(this.props.text)} />
-                    </label>
-                    <br />
-                </FormControl>
-            </div>
+            <label>
+                {this.props.text}
+                <input
+                    name="categorieen"
+                    type="checkbox"
+                    onChange={() => this.handleChange(this.props.text)} />
+            </label>
         );
     }
 }
