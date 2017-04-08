@@ -8,11 +8,19 @@ const theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
 const startronde = require('./messages/startronde');
+//Import Messages
+
+const mongoose        = require('./DatabaseConnection/mongoose.js');
 const startkwiz = require('./messages/startkwiz');
 const startkwizavond = require('./messages/startkwizavond');
 const aanmeldenteam = require('./messages/aanmeldenteam');
 const teamGeaccepteerd = require('./messages/teamGeaccepteerd');
-const mongoose        = require('./DatabaseConnection/mongoose.js');
+const startVraag = require('./messages/startVraag');
+const ontvangstAntwoord = require('./messages/ontvangstAntwoord');
+const stopVraag = require('.messages/stopVraag');
+const antwoordGecontroleerd = require('.messages/antwoordGecontroleerd');
+const stopKwiz = require('./messages/stopKwiz');
+
 
 const app = express();
 // app.use(bodyParser.json());
@@ -52,7 +60,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 session = aanmeldenteam(data.code, data.teamnaam, session, websocket);
                 break;
             case "ontvangstantwoord":
-                console.log("ontvangstantwoord");
+                ontvangstAntwoord(data.code, data.antwoord, session, websocket);
                 break;
             case "startkwizavond":
                 startkwizavond(data.code, session, websocket);
@@ -71,19 +79,22 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 startronde(websocket, data.categorieen);
                 break;
             case "stopkwiz":
-                console.log("stopkwiz");
+                stopKwiz(session, websocket);
                 break;
             case "startvraag":
-                console.log("startvraag");
+                startVraag(data.vraag, session, websocket);
                 break;
             case "stopvraag":
-                console.log("stopvraag");
+                stopVraag(session, websocket);
                 break;
             case "antwoordgecontroleerd":
-                console.log("antwoordgecontroleerd");
+                antwoordGecontroleerd(data.teamnaam, data.goedgekeurd, session, websocket);
                 break;
             case "volgende":
                 console.log("volgende");
+                break;
+            case "aanmeldenscorebord":
+                iets
                 break;
         }
     };

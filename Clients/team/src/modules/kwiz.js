@@ -25,6 +25,7 @@ class Kwiz extends React.Component {
             this.props.webSocket.send(
                 JSON.stringify({
                     type: "ontvangstantwoord",
+                    code: this.props.code,
                     antwoord: this.state.huidigAntwoord
                 })
             );

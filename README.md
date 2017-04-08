@@ -98,7 +98,7 @@ object: {
   * Vraag afbreken: (5)
     * Type: afbrekenvraag
   * Kwiz gestopt: (6)
-    * Type: Kwizgestopt
+    * Type: kwizgestopt
 
 ### KwizMeestert-app
 * ws
@@ -135,18 +135,18 @@ object: {
     * Type: geaccepteerdteam
     * String: _teamnaam_
   * Ontvangst vraag: (23)
-    * Type: scoreboardvraag
-    * {
-        Number: rondenummer,
-        Number: vraagnummer,
-        String: question,
-        String: category
-      }: _vraag_
+    * Type: scorebordvraag
+    * Number: rondenummer,
+    * Number: vraagnummer,
+    * String: vraag,
+    * String: categorie
   * Ontvangst teamnaam: (24)
-    * Type: scoreboardteamnaam
+    * Type: scorebordteamnaam
     * String: _teamnaam_
   * Ontvangst teamgegevens: (25)
-    * Type: scoreboardteamgegevens
+    * Type: scorebordteamgegevens
+    * Number: rondenummer
+    * Number: vraagnummer
     * Array[teams: {
         String: teamnaam,
         String: antwoord,
@@ -154,7 +154,8 @@ object: {
         Number: vragengoed
       }]: _teamgegevens_
   * Gecontroleerd antwoord: (26)
-    * Type: scoreboardgecontroleerdantwoord
+    * Type: scorebordgecontroleerdantwoord
+    * String: _teamnaam_
     * Boolean: _correct_
   * Scorelijst ontvangen: (27)
     * Type: scorelijst
@@ -162,6 +163,9 @@ object: {
         String: teamnaam,
         Number: rondepunten
       }]: _scorelijst_
+  * Verificatie geaccepteerd: (29)
+    * Type: scorebordgeaccepteerd
+    * String: _melding_ ("geaccepteerd", "code niet correct")
 
 ### Server
 * ws
@@ -171,6 +175,7 @@ object: {
     * String: _teamnaam_
   * Ontvangst antwoord: (4)
     * Type: ontvangstantwoord
+    * String: _code_
     * String: _antwoord_
   * Verificatie code: (7)
     * Type: startkwizavond
@@ -202,8 +207,8 @@ object: {
     * Boolean: _goedgekeurd_
   * Volgende: (20)
     * Type: volgende
-  * Beamer aanmelden: (28)
-    * Type: aanmeldenbeamer
+  * Scorebord aanmelden: (28)
+    * Type: aanmeldenscorebord
     * String: _code_
 
 ## Componenten / Views / Routes

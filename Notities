@@ -19,7 +19,8 @@ Server
 
 Redux iets beter beargumenteren. 
 MongoDB model beter onderbouwen.
-state naamkeuze mogelijk naar session.
-categorien bij huidigeronde.
 Benoem nadelen ook bij Model.
 En benoem waarom de voordelen belangrijker zijn dan de nadelen.
+
+Database _id is string, geen int.(dacht ik)
+Hadden klasses moeten toepassen voor de data.
