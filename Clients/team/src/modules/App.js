@@ -11,6 +11,7 @@ class App extends Component {
         this.state = {
             teamNaam: "",
             melding: "",
+            code: "",
             webSocket: webSocket,
             huidigeVraag: "Wachten op vraag..."
         }
@@ -53,11 +54,17 @@ class App extends Component {
         })
     }
 
+    onCodeChange(code) {
+        this.setState({
+            code: code
+        })
+    }
+
     render() {
       const { children } = this.props
       return (
           <div>
-              { children && React.cloneElement(children, { webSocket:this.state.webSocket, melding: this.state.melding, huidigeVraag:this.state.huidigeVraag, onTeamNaamChange: this.onTeamNaamChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this) }) }
+              { children && React.cloneElement(children, { webSocket:this.state.webSocket, code: this.state.code, melding: this.state.melding, huidigeVraag:this.state.huidigeVraag, onTeamNaamChange: this.onTeamNaamChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this), onCodeChange: this.onCodeChange.bind(this)}) }
           </div>
       )
   }

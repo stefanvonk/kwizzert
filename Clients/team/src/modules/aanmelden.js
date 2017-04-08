@@ -27,6 +27,7 @@ class Aanmelden extends React.Component {
 
     handleClick() {
         this.props.onTeamNaamChange(this.state.teamNaam);
+        this.props.onCodeChange(this.state.code);
 
         if (this.state.teamNaam !== "" && this.state.code !== "") {
             this.props.webSocket.send(
