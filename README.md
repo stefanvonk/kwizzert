@@ -172,6 +172,7 @@ object: {
     * String: _teamnaam_
   * Ontvangst antwoord: (4)
     * Type: ontvangstantwoord
+    * String: _code_
     * String: _antwoord_
   * Verificatie code: (7)
     * Type: startkwizavond
@@ -206,10 +207,6 @@ object: {
   * Scorebord aanmelden: (28)
     * Type: aanmeldenscorebord
     * String: _code_
-  * Ontvangst teamantwoord: (30)
-    * Type: ontvangstantwoord
-    * String: _code_
-    * String: _antwoord_
 
 ## Componenten / Views / Routes
 De omschrijvingen zijn als volgt opgebouwd:
