@@ -98,7 +98,7 @@ object: {
   * Vraag afbreken: (5)
     * Type: afbrekenvraag
   * Kwiz gestopt: (6)
-    * Type: Kwizgestopt
+    * Type: kwizgestopt
 
 ### KwizMeestert-app
 * ws
@@ -145,6 +145,8 @@ object: {
     * String: _teamnaam_
   * Ontvangst teamgegevens: (25)
     * Type: scorebordteamgegevens
+    * Number: rondenummer
+    * Number: vraagnummer
     * Array[teams: {
         String: teamnaam,
         String: antwoord,
@@ -153,6 +155,7 @@ object: {
       }]: _teamgegevens_
   * Gecontroleerd antwoord: (26)
     * Type: scorebordgecontroleerdantwoord
+    * String: _teamnaam_
     * Boolean: _correct_
   * Scorelijst ontvangen: (27)
     * Type: scorelijst
@@ -172,6 +175,7 @@ object: {
     * String: _teamnaam_
   * Ontvangst antwoord: (4)
     * Type: ontvangstantwoord
+    * String: _code_
     * String: _antwoord_
   * Verificatie code: (7)
     * Type: startkwizavond
