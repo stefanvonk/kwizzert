@@ -19,7 +19,7 @@ class ActieveVraag extends React.Component {
     }
 
     componentDidMount() {
-        var that = this;
+        let that = this;
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.Type === "scorebordvraag") {
