@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 
 class AchterafKwiz extends React.Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class AchterafKwiz extends React.Component {
 
     componentDidMount(){
         let that = this;
-        webSocket.onmessage = function incoming(message) {
+        this.props.webSocket.onmessage = function incoming(message) {
             let data = JSON.parse(message.data);
             switch(data.Type) {
                 case "scorelijst":

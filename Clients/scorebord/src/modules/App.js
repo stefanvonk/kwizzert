@@ -22,7 +22,7 @@ class App extends Component {
         const { children } = this.props
         return (
             <div>
-                { children && React.cloneElement(children, { webSocket:this.state.webSocket, code:this.state.code}) }
+                { children && React.cloneElement(children, { webSocket:this.state.webSocket, code:this.state.code, onCodeChange:this.onCodeChange.bind(this)}) }
             </div>
         )
     }

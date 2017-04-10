@@ -6,14 +6,9 @@ var functie = function(code, session, websocket){
     if(kwiz){
         kwiz.beamerSocket = websocket;
 
-        data = {
-            melding: "geaccepteerd"
-        }
+        data.melding = "geaccepteerd";
     } else{
-
-        data = {
-            melding: "code niet correct"
-        }
+        data.melding = "code niet correct";
     }
 
     websocket.onopen = function (event) {};

@@ -21,6 +21,8 @@ const ontvangstAntwoord = require('./messages/ontvangstAntwoord');
 const stopVraag = require('./messages/stopVraag');
 const antwoordGecontroleerd = require('./messages/antwoordGecontroleerd');
 const stopKwiz = require('./messages/stopKwiz');
+const aanmeldenScorebord = require('./messages/aanmeldenScorebord');
+const volgende = require('./messages/volgende');
 
 
 const app = express();
@@ -92,10 +94,10 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 antwoordGecontroleerd(data.teamnaam, data.goedgekeurd, session, websocket);
                 break;
             case "volgende":
-                console.log("volgende");
+                volgende(session, websocket);
                 break;
-            case "aanmeldenscorebord":
-                iets
+            case "aanmeldenbeamer":
+                aanmeldenScorebord(data.code, session, websocket);
                 break;
         }
     };

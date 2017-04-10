@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { browserHistory } from 'react-router'
 
 class InlogScherm extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class InlogScherm extends React.Component {
 
     componentDidMount(){
         let that = this;
-        webSocket.onmessage = function incoming(message) {
+        this.props.webSocket.onmessage = function incoming(message) {
             let data = JSON.parse(message.data);
             switch(data.Type) {
                 case "scorebordgeaccepteerd":
@@ -42,7 +43,7 @@ class InlogScherm extends React.Component {
     }
 
     handleClick() {
-        this.props.onChangeCode(this.props.code);
+        this.props.onCodeChange(this.state.code);
         if (this.state.code !== "") {
             this.props.webSocket.send(
                 JSON.stringify({
@@ -51,7 +52,7 @@ class InlogScherm extends React.Component {
                 })
             );
         }
-        this.state.onMeldingChange(".....");
+        this.onMeldingChange(".....");
     }
 
     render() {
