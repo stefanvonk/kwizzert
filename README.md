@@ -115,7 +115,7 @@ object: {
     * Type: ontvangstvragen
     * Array[vragen: {
         ObjectID: _id,
-        String: question,
+        String: name,
         String: answer,
         String: category
       }]: _vragen_
@@ -195,7 +195,7 @@ object: {
     * Type: startvraag
     * {
         ObjectID: _id,
-        String: question,
+        String: name,
         String: answer,
         String: category
       }: _vraag_
