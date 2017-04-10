@@ -23,7 +23,7 @@ class Vragenkiezen extends React.Component {
                     vragen: data.vragen
                 });
             }
-            if(data.Type === "12vragengeweest") {
+            else if(data.Type === "12vragengeweest") {
                 browserHistory.push('/kwizmeestert/rondestarten');
             }
         };

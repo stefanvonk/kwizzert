@@ -8,7 +8,7 @@ var functie = function(code, antwoord, session, websocket){
             let scorebordData = {
                 Type: "scorebordteamnaam",
                 teamnaam: team.teamnaam
-            }
+            };
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
