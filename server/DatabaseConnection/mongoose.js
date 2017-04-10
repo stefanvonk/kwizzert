@@ -49,7 +49,12 @@ class Mongo {
         });
     }
 
-
+    getQuestionsByCategorie(categorie, callback){
+        Question.find({ category: categorie }, function (err, questions) {
+            if (err) return console.error(err);
+            callback (questions);
+        });
+    }
 
     getAllQuestions(callback){
         Question.find(function (err, questions) {
@@ -92,6 +97,16 @@ let categories = ["Art and Literature", "Music", "History"];
 
 if(false){
     database.getQuestionsByCategories(categories, function (callback){
+        callback.forEach(function (question, index){
+            console.log("Question" + index + ": " + question.name);
+        });
+    });
+}
+
+let categorie = "music";
+
+if(false){
+    database.getQuestionsByCategorie(categorie, function (callback){
         callback.forEach(function (question, index){
             console.log("Question" + index + ": " + question.name);
         });

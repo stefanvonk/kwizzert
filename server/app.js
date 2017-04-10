@@ -77,7 +77,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 startkwiz(websocket);
                 break;
             case "startronde":
-                startronde(websocket, data.categorieen);
+                startronde(websocket, data.categorieen, session);
                 break;
             case "stopkwiz":
                 stopKwiz(session, websocket);

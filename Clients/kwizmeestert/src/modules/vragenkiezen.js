@@ -1,16 +1,13 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
-import Kiesvragen from './kiesVragen'
 
 class Vragenkiezen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            vragen: {},
-            gekozenVraag: "",
-            aantalVragenGeweest: 0,
-            aantalRondenGeweest: 0
+            vragen: [],
+            gekozenVraag: ""
         };
 
         this.props.webSocket.onopen = function (event) {};
@@ -26,11 +23,14 @@ class Vragenkiezen extends React.Component {
                     vragen: that.state.vragen
                 });
             }
+            if(data.Type === "12vragengeweest") {
+                browserHistory.push('/kwizmeestert/rondestarten');
+            }
         };
     }
 
     startVraagButton() {
-        if(this.state.gekozenVraag != "" ) {
+        if(this.state.gekozenVraag !== "" ) {
             var data = {
                 Type: "startvraag",
                 vraag: this.state.gekozenVraag
@@ -50,7 +50,7 @@ class Vragenkiezen extends React.Component {
         browserHistory.push('/kwizmeestert/antwoordcontroleren');
     }
 
-    handleChange(vraag){
+    handleChangeVraag(vraag){
         this.setState({
             gekozenVraag: vraag
         });
@@ -75,7 +75,7 @@ class Vragenkiezen extends React.Component {
                                 <input
                                     name="vragen"
                                     type="radio"
-                                    onChange={() => this.handleChange(item)} />
+                                    onChange={() => this.handleChangeVraag(item)} />
                             </label>
                         )}
                     </form>
