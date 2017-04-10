@@ -124,7 +124,7 @@ object: {
     * Array[vragen: {
         String: teamnaam,
         String: antwoord,
-      }]: _teamnantwoorden_
+      }]: _teamantwoorden_
 
 ### Scorebord-app
 * ws
