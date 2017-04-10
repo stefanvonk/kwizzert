@@ -63,7 +63,6 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 session = aanmeldenteam(data.code, data.teamnaam, session, websocket);
                 break;
             case "ontvangstantwoord":
-                console.log("Antwoord komt binnen");
                 ontvangstAntwoord(data.code, data.antwoord, session, websocket);
                 break;
             case "startkwizavond":

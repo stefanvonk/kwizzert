@@ -6,29 +6,24 @@ var functie = function(session, websocket){
         let scorebordSocket = kwiz.beamerSocket;
 
         let teamgegevens = [];
-        let teamgegevensObject = {
-            teamnaam: "",
-            antwoord: "",
-            rondepunten: 0,
-            vragengoed: 0
-        };
-
-        kwiz.teams.forEach(function (team) {
-            teamgegevensObject.teamnaam = team.teamnaam;
-            teamgegevensObject.antwoord = team.huidigAntwoord;
-            teamgegevensObject.rondepunten = team.rondepunten;
-            teamgegevensObject.vragengoed = team.vragenGoed;
-
-            teamgegevens.push(teamgegevensObject);
-        });
 
         if(scorebordSocket){
+            kwiz.teams.forEach(function (team) {
+                let teamGegevens = {
+                    teamnaam: team.teamnaam,
+                    antwoord: team.huidigAntwoord,
+                    rondepunten: team.rondepunten,
+                    vragengoed: team.vragenGoed
+                }
+                teamgegevens.push(teamGegevens);
+            });
+
             scorebordData = {
                 Type: "scorebordteamgegevens",
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
                 teamgegevens: teamgegevens
-            }
+            };
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
@@ -37,7 +32,7 @@ var functie = function(session, websocket){
             let teamSocket = team.teamSocket;
             let teamData = {
                 Type: "afbrekenvraag"
-            }
+            };
             teamSocket.onopen = function (event) {};
             teamSocket.send(JSON.stringify(teamData));
         });
@@ -52,7 +47,6 @@ var functie = function(session, websocket){
                 teamnaam : team.teamnaam,
                 huidigAntwoord : team.huidigAntwoord
             };
-            console.log(teamantwoord);
             kwizmeestertData.teamantwoorden.push(teamantwoord);
         });
 
