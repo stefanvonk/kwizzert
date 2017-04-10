@@ -7,6 +7,7 @@ class Rondestarten extends React.Component {
         super(props);
         this.state = {
             categorieen: [],
+            gekozenCategorieen: []
         };
         this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
@@ -17,19 +18,39 @@ class Rondestarten extends React.Component {
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.Type === "ontvangstcategorieen") {
-                that.state.categorieen.push(data.categorieen);
-                that.setState({
-                    categorieen: that.state.categorieen
-                });
+                that.onChangeCategorieen(data.categorieen);
+
             }
         };
     }
 
+    onChangeCategorieen(categorieen) {
+        this.state.categorieen.push(categorieen);
+        this.setState({
+            categorieen: this.state.categorieen
+        });
+    }
+
+    handleChangeCategorieen(catnaam) {
+        if(this.state.gekozenCategorieen.includes(catnaam)){
+            let index = this.state.gekozenCategorieen.indexOf(catnaam);
+            this.state.gekozenCategorieen.splice(index, 1);
+            this.setState({
+                gekozenCategorieen: this.state.gekozenCategorieen
+            });
+        } else{
+            this.state.gekozenCategorieen.push(catnaam);
+            this.setState({
+                gekozenCategorieen: this.state.gekozenCategorieen
+            });
+        }
+    }
+
     startRondeButton() {
-        if(this.props.gekozenCategorieen.length === 3) {
+        if(this.state.gekozenCategorieen.length === 3) {
             var data = {
                 Type: "startronde",
-                categorieen: this.props.gekozenCategorieen
+                categorieen: this.state.gekozenCategorieen
             };
             this.props.webSocket.send(JSON.stringify(data));
             browserHistory.push('/kwizmeestert/vragenkiezen');
@@ -39,7 +60,11 @@ class Rondestarten extends React.Component {
     }
 
     stopKwizButton() {
-        console.log("De kwiz is gestopt!")
+        var data = {
+            Type: "stopkwiz"
+        };
+        this.props.webSocket.send(JSON.stringify(data));
+        browserHistory.push('/kwizmeestert/');
     }
 
     render() {
@@ -55,7 +80,7 @@ class Rondestarten extends React.Component {
                                 <input
                                 name="categorieen"
                                 type="checkbox"
-                                onChange={() => this.props.handleChangeCategorieen(item)} />
+                                onChange={() => this.handleChangeCategorieen(item)} />
                                 <br />
                             </label>
                         )}
