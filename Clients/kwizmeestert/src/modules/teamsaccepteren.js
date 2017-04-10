@@ -34,14 +34,12 @@ class Teamsaccepteren extends React.Component {
     teamAccepteren(teamnaam){
         data.teamnaam = teamnaam;
         data.geaccepteerd = true;
-        console.log(data);
         this.props.webSocket.send(JSON.stringify(data));
     }
 
     teamWeigeren(teamnaam){
         data.teamnaam = teamnaam;
         data.geaccepteerd = false;
-        console.log(data);
         this.props.webSocket.send(JSON.stringify(data));
     }
 
