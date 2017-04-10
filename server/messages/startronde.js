@@ -1,10 +1,10 @@
 const mongoose = require('./../DatabaseConnection/mongoose.js');
 
 var functie = function(websocket, categories, session){
-    websocket.onopen = function (event) {};
     let database = mongoose.getInstance();
 
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
+    kwiz.huidigeronde = categories;
 
     function fillQuestionsAsync(categories, index, callback){
         function getQuestionsByCategorie(index, questions) {
@@ -13,8 +13,8 @@ var functie = function(websocket, categories, session){
                 let i = 0;
                 while (i < 3) {
                     let randomVraag = callback[Math.floor(Math.random() * callback.length)];
-                    if (!threeQuestions.includes(randomVraag && !kwiz.gesteldeVragen.includes(randomVraag._id))) {
-                        threeQuestions.push(randomVraag)
+                    if (!threeQuestions.includes(randomVraag) && !kwiz.gesteldeVragen.includes(randomVraag._id)) {
+                        threeQuestions.push(randomVraag);
                         i++;
                     }
                 }
@@ -41,6 +41,7 @@ var functie = function(websocket, categories, session){
             Type: "ontvangstvragen",
             vragen: questions
         };
+        websocket.onopen = function (event) {};
         websocket.send(JSON.stringify(data));
         console.log("callback: " + questions);
     });
