@@ -24,6 +24,16 @@ var functie = function(session, websocket){
             teamSocket.onopen = function (event) {};
             teamSocket.send(JSON.stringify(teamData));
         });
+
+        let kwizmeestertData = {
+            Type: "ontvangstantwoorden",
+            teamantwoorden: []
+        };
+
+        kwiz.teams.forEach(function(team) {
+            kwizmeestertData.teamantwoorden = [team.teamnaam, team.huidigAntwoord]
+            websocket.send(JSON.stringify(kwizmeestertData))
+        });
     }
 };
 

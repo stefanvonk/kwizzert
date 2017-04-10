@@ -1,6 +1,12 @@
 var functie = function(teamnaam, goedgekeurd, session, websocket){
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
     if(kwiz) {
+        kwiz.teams.forEach(function (item) {
+            if(item.teamnaam === teamnaam){
+                item.geaccepteerd = goedgekeurd;
+            }
+        });
+
         kwiz.huidigevraag.vraag = vraag.question;
         kwiz.huidigevraag.antwoord = vraag.answer;
         let scorebordSocket = kwiz.beamerSocket;

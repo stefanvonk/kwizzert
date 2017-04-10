@@ -50,12 +50,30 @@ var functie = function(session, websocket){
             }
         });
         let scorebordSocket = kwiz.beamerSocket;
+
+        let teamgegevens = [];
+        let teamgegevensObject = {
+            teamnaam: "",
+            antwoord: "",
+            rondepunten: 0,
+            vragengoed: 0
+        };
+
+        kwiz.teams.forEach(function (team) {
+            teamgegevensObject.teamnaam = team.teamnaam;
+            teamgegevensObject.antwoord = team.huidigAntwoord;
+            teamgegevensObject.rondepunten = team.rondepunten;
+            teamgegevensObject.vragengoed = team.vragenGoed;
+
+            teamgegevens.push(teamgegevensObject);
+        })
+
         if(scorebordSocket){
             scorebordData = {
                 Type: "scorebordteamgegevens",
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
-//                teams: {teamnaam, antwoord, rondepunten, vragengoed}kwiz.teams
+                teamgegevens: teamgegevens
             }
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));

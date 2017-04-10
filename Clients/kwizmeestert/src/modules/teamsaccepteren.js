@@ -2,7 +2,11 @@ import React from 'react'
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-import TeamsaccepterenTeam from './teamsaccepterenTeam'
+var data = {
+    Type: "teamgeaccepteerd",
+    teamnaam: "",
+    geaccepteerd: true
+};
 
 class Teamsaccepteren extends React.Component {
     constructor(props) {
@@ -27,6 +31,18 @@ class Teamsaccepteren extends React.Component {
         };
     }
 
+    teamAccepteren(teamnaam){
+        data.teamnaam = teamnaam;
+        data.geaccepteerd = true;
+        this.props.webSocket.send(JSON.stringify(data));
+    }
+
+    teamWeigeren(teamnaam){
+        data.teamnaam = teamnaam;
+        data.geaccepteerd = false;
+        this.props.webSocket.send(JSON.stringify(data));
+    }
+
     startButton() {
         // deze moet nog aangepast worden of er echt als teams zijn geaccepteerd
         if(this.state.teams.length >= 2) {
@@ -47,7 +63,11 @@ class Teamsaccepteren extends React.Component {
                 <div>
                     {this.state.teams.map((item, index) =>
                         <div>
-                            <TeamsaccepterenTeam webSocket={this.props.webSocket} text={item} />
+                            <div>
+                                <h2>{item}</h2>
+                                <Button bsStyle="success" onClick={() => this.teamAccepteren(item)}>Accepteren</Button>
+                                <Button bsStyle="danger" onClick={() => this.teamWeigeren(item)}>Weigeren</Button>
+                            </div>
                         </div>
                     )}
                 </div>

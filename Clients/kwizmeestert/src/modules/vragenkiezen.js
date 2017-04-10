@@ -7,7 +7,8 @@ class Vragenkiezen extends React.Component {
         super(props);
         this.state = {
             vragen: [],
-            gekozenVraag: ""
+            gekozenVraag: "",
+            vraagActief: ""
         };
 
         this.props.webSocket.onopen = function (event) {};
@@ -36,6 +37,9 @@ class Vragenkiezen extends React.Component {
                 vraag: this.state.gekozenVraag
             };
             this.props.webSocket.send(JSON.stringify(data));
+            this.setState({
+                vraagActief: "De vraag is gestart."
+            });
         }else {
             this.props.onMeldingChange("Er moet een vraag worden aangevinkt om te starten.");
         }
@@ -46,7 +50,6 @@ class Vragenkiezen extends React.Component {
             Type: "stopvraag",
         };
         this.props.webSocket.send(JSON.stringify(data));
-        console.log("De kwiz is gestopt!");
         browserHistory.push('/kwizmeestert/antwoordcontroleren');
     }
 
@@ -55,11 +58,6 @@ class Vragenkiezen extends React.Component {
             gekozenVraag: vraag
         });
         console.log(this.state.gekozenVraag);
-
-        // this.state.categorieen.push(catname);
-        // this.setState({
-        //     categorieen: that.state.categorieen
-        // });
     }
 
     render() {
@@ -71,7 +69,7 @@ class Vragenkiezen extends React.Component {
                     <form>
                         {this.state.vragen.map((item, index) =>
                             <label>
-                                {item}
+                                {item.question}
                                 <input
                                     name="vragen"
                                     type="radio"
@@ -80,9 +78,10 @@ class Vragenkiezen extends React.Component {
                         )}
                     </form>
                 </div>
+                {this.state.vraagActief}
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startVraagButton()}>Start vraag</Button>
-                <Button bsStyle="primary" onClick={() => this.stopVraagButton()}>Stoppen</Button>
+                <Button bsStyle="primary" onClick={() => this.stopVraagButton()}>Vraag stoppen</Button>
                 <div>
                     Melding: {this.props.melding}
                 </div>
