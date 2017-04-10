@@ -31,11 +31,10 @@ class Rondestarten extends React.Component {
                 Type: "startronde",
                 categorieen: this.props.gekozenCategorieen
             };
-            console.log(this.props.gekozenCategorieen + "tweede");
             this.props.webSocket.send(JSON.stringify(data));
             browserHistory.push('/kwizmeestert/vragenkiezen');
         }else {
-            console.log("Er moeten 3 categorieën gekozen zijn.");
+            this.props.onMeldingChange("Er moeten 3 categorieën gekozen zijn.");
         }
     }
 
@@ -56,7 +55,8 @@ class Rondestarten extends React.Component {
                                 <input
                                 name="categorieen"
                                 type="checkbox"
-                                onChange={() => this.props.gekozenCategorieen(item)} />
+                                onChange={() => this.props.handleChangeCategorieen(item)} />
+                                <br />
                             </label>
                         )}
                     </form>
@@ -64,7 +64,11 @@ class Rondestarten extends React.Component {
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startRondeButton()}>Ronde starten</Button>
                 <Button bsStyle="primary" onClick={() => this.stopKwizButton()}>Kwiz stoppen</Button>
+                <div>
+                    Melding: {this.props.melding}
+                </div>
             </div>
+
         );
     }
 }

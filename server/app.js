@@ -18,8 +18,8 @@ const aanmeldenteam = require('./messages/aanmeldenteam');
 const teamGeaccepteerd = require('./messages/teamGeaccepteerd');
 const startVraag = require('./messages/startVraag');
 const ontvangstAntwoord = require('./messages/ontvangstAntwoord');
-const stopVraag = require('.messages/stopVraag');
-const antwoordGecontroleerd = require('.messages/antwoordGecontroleerd');
+const stopVraag = require('./messages/stopVraag');
+const antwoordGecontroleerd = require('./messages/antwoordGecontroleerd');
 const stopKwiz = require('./messages/stopKwiz');
 
 

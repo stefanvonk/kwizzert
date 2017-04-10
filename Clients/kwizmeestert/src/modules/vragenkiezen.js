@@ -7,8 +7,8 @@ class Vragenkiezen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            vragen: [],
-            gekozenVraag: [],
+            vragen: {},
+            gekozenVraag: "",
             aantalVragenGeweest: 0,
             aantalRondenGeweest: 0
         };
@@ -30,14 +30,14 @@ class Vragenkiezen extends React.Component {
     }
 
     startVraagButton() {
-        if(this.state.gekozenCategorieen.length <= 12 ) {
+        if(this.state.gekozenVraag != "" ) {
             var data = {
                 Type: "startvraag",
                 vraag: this.state.gekozenVraag
             };
             this.props.webSocket.send(JSON.stringify(data));
         }else {
-            console.log("Er zijn al 12 vragen geweest, er moet een nieuwe ronde worden gestart.");
+            this.props.onMeldingChange("Er moet een vraag worden aangevinkt om te starten.");
         }
     }
 
@@ -50,21 +50,42 @@ class Vragenkiezen extends React.Component {
         browserHistory.push('/kwizmeestert/antwoordcontroleren');
     }
 
+    handleChange(vraag){
+        this.setState({
+            gekozenVraag: vraag
+        });
+        console.log(this.state.gekozenVraag);
+
+        // this.state.categorieen.push(catname);
+        // this.setState({
+        //     categorieen: that.state.categorieen
+        // });
+    }
+
     render() {
         return (
             <div className="App">
                 <h1>Ronde</h1>
-                <h2>Kies hieronder drie categorieën:</h2>
+                <h2>Kies hieronder een vraag:</h2>
                 <div>
                     <form>
                         {this.state.vragen.map((item, index) =>
-                            <Kiesvragen webSocket={this.props.webSocket} text={item} />
+                            <label>
+                                {item}
+                                <input
+                                    name="vragen"
+                                    type="radio"
+                                    onChange={() => this.handleChange(item)} />
+                            </label>
                         )}
                     </form>
                 </div>
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startVraagButton()}>Start vraag</Button>
                 <Button bsStyle="primary" onClick={() => this.stopVraagButton()}>Stoppen</Button>
+                <div>
+                    Melding: {this.props.melding}
+                </div>
             </div>
         );
     }

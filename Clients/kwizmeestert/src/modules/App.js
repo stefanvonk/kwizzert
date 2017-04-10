@@ -10,7 +10,8 @@ class App extends Component {
 
         this.state = {
             gekozenCategorieen: [],
-            webSocket: webSocket
+            webSocket: webSocket,
+            melding: ""
         }
     }
 
@@ -41,14 +42,19 @@ class App extends Component {
         this.setState({
             gekozenCategorieen: this.state.gekozenCategorieen
         });
-        console.log(this.state.gekozenCategorieen + "eerste");
+    }
+
+    onMeldingChange(melding) {
+        this.setState({
+            melding: melding
+        });
     }
 
     render() {
         const { children } = this.props;
         return (
             <div>
-                { children && React.cloneElement(children, { webSocket:this.state.webSocket, gekozenCategorieen:this.handleChangeCategorieen.bind(this) }) }
+                { children && React.cloneElement(children, { gekozenCategorieen: this.state.gekozenCategorieen, webSocket:this.state.webSocket, melding: this.state.melding, handleChangeCategorieen:this.handleChangeCategorieen.bind(this), onMeldingChange: this.onMeldingChange.bind(this) }) }
             </div>
         )
     }

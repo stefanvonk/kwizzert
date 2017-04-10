@@ -36,7 +36,7 @@ class Teamsaccepteren extends React.Component {
             this.props.webSocket.send(JSON.stringify(data));
             browserHistory.push('/kwizmeestert/rondestarten');
         }else {
-            console.log("Er moeten zich minimaal 2 teams aanmelden.");
+            this.props.onMeldingChange("Er moeten zich minimaal 2 teams aanmelden.");
         }
     }
 
@@ -53,6 +53,9 @@ class Teamsaccepteren extends React.Component {
                 </div>
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startButton()}>Starten</Button>
+                <div>
+                    Melding: {this.props.melding}
+                </div>
             </div>
         );
     }

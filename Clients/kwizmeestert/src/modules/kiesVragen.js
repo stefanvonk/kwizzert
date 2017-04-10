@@ -9,10 +9,6 @@ var data = {
 class KiesCategorieen extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isGoing: true
-        };
     }
 
     handleChange(catname){
@@ -28,7 +24,7 @@ class KiesCategorieen extends React.Component {
             <label>
                 {this.props.text}
                 <input
-                    name="categorieen"
+                    name="vragen"
                     type="checkbox"
                     onChange={() => this.handleChange(this.props.text)} />
             </label>
