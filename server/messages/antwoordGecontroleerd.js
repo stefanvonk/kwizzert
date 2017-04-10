@@ -9,7 +9,7 @@ var functie = function(teamnaam, goedgekeurd, session, websocket){
                 Type: "scorebordgecontroleerdantwoord",
                 teamnaam: teamnaam,
                 goedgekeurd: goedgekeurd
-            }
+            };
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }

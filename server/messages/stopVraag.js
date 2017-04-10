@@ -8,7 +8,7 @@ var functie = function(session, websocket){
         let scorebordSocket = kwiz.beamerSocket;
         if(scorebordSocket){
             scorebordData = {
-                Type: "scorebordvraag",
+                Type: "scorebordteamgegevens",
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
 //                teams: {teamnaam, antwoord, rondepunten, vragengoed}kwiz.teams
