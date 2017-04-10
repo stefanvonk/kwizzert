@@ -8,13 +8,11 @@ var data = {
     goedgekeurd: true
 };
 
-class Teamsaccepteren extends React.Component {
+class AntwoordControleren extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: [],
-            antwoorden: [],
-            gecontroleerd: []
+            teamantwoorden: []
         };
 
         this.props.webSocket.onopen = function (event) {};
@@ -25,14 +23,15 @@ class Teamsaccepteren extends React.Component {
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.Type === "ontvangstantwoorden") {
-                that.state.teams.push(data.teamantwoorden[0]);
-                that.state.antwoorden.push(data.teamantwoorden[1]);
-                that.setState({
-                    teams: that.state.teams,
-                    antwoorden: that.state.antwoorden
-                });
+                that.onChangeTeamAntwoorden(data.teamantwoorden);
             }
         };
+    }
+
+    onChangeTeamAntwoorden(teamantwoorden){
+        this.setState({
+            teamantwoorden: teamantwoorden
+        });
     }
 
     antwoordAccepteren(teamnaam){
@@ -75,11 +74,11 @@ class Teamsaccepteren extends React.Component {
             <div className="App">
                 <h1>Antwoorden van teams</h1>
                 <div>
-                    {this.state.teams.map((item, index) =>
+                    {this.state.teamantwoorden.map((teamantwoord, index) =>
                         <div>
-                            Team: "{this.state.teams}" Antwoord: "{this.state.antwoorden}"
-                            <Button bsStyle="success" onClick={() => this.antwoordAccepteren(item)}>Goedkeuren</Button>
-                            <Button bsStyle="danger" onClick={() => this.antwoordWeigeren(item)}>Foutkeuren</Button>
+                            Team: "{teamantwoord.teamnaam}" Antwoord: "{teamantwoord.huidigAntwoord}"
+                            <Button bsStyle="success" onClick={() => this.antwoordAccepteren(teamantwoord)}>Goedkeuren</Button>
+                            <Button bsStyle="danger" onClick={() => this.antwoordWeigeren(teamantwoord)}>Foutkeuren</Button>
                         </div>
                     )}
                 </div>
@@ -93,4 +92,4 @@ class Teamsaccepteren extends React.Component {
     }
 }
 
-module.exports = Teamsaccepteren;
+module.exports = AntwoordControleren;

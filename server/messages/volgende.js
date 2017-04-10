@@ -122,7 +122,6 @@ var functie = function(session, websocket){
             };
             websocket.onopen = function (event) {};
             websocket.send(JSON.stringify(data));
-            console.log("callback: " + questions);
         });
     }
 };

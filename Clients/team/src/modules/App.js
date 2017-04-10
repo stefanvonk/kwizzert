@@ -50,7 +50,7 @@ class App extends Component {
 
     onHuidigeVraagChange(huidigeVraag){
         this.setState({
-            huidigevraag: huidigeVraag
+            huidigeVraag: huidigeVraag
         })
     }
 

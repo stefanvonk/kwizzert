@@ -13,7 +13,7 @@ var functie = function(vraag, session, websocket){
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
                 vraag: vraag.name,
                 categorie: vraag.category
-            }
+            };
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
@@ -22,7 +22,7 @@ var functie = function(vraag, session, websocket){
             let teamData = {
                 Type: "ontvangstvraag",
                 vraag: vraag.name
-            }
+            };
             teamSocket.onopen = function (event) {};
             teamSocket.send(JSON.stringify(teamData));
         });

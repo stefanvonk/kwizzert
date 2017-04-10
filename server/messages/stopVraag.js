@@ -3,19 +3,36 @@ var functie = function(session, websocket){
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
     if(kwiz) {
 
-        kwiz.huidigevraag.vraag = vraag.question;
-        kwiz.huidigevraag.antwoord = vraag.answer;
         let scorebordSocket = kwiz.beamerSocket;
+
+        let teamgegevens = [];
+        let teamgegevensObject = {
+            teamnaam: "",
+            antwoord: "",
+            rondepunten: 0,
+            vragengoed: 0
+        };
+
+        kwiz.teams.forEach(function (team) {
+            teamgegevensObject.teamnaam = team.teamnaam;
+            teamgegevensObject.antwoord = team.huidigAntwoord;
+            teamgegevensObject.rondepunten = team.rondepunten;
+            teamgegevensObject.vragengoed = team.vragenGoed;
+
+            teamgegevens.push(teamgegevensObject);
+        });
+
         if(scorebordSocket){
             scorebordData = {
                 Type: "scorebordteamgegevens",
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
-//                teams: {teamnaam, antwoord, rondepunten, vragengoed}kwiz.teams
+                teamgegevens: teamgegevens
             }
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
+
         kwiz.teams.forEach(function (team) {
             let teamSocket = team.teamSocket;
             let teamData = {
@@ -31,9 +48,15 @@ var functie = function(session, websocket){
         };
 
         kwiz.teams.forEach(function(team) {
-            kwizmeestertData.teamantwoorden = [team.teamnaam, team.huidigAntwoord]
-            websocket.send(JSON.stringify(kwizmeestertData))
+            let teamantwoord ={
+                teamnaam : team.teamnaam,
+                huidigAntwoord : team.huidigAntwoord
+            };
+            console.log(teamantwoord);
+            kwizmeestertData.teamantwoorden.push(teamantwoord);
         });
+
+        websocket.send(JSON.stringify(kwizmeestertData))
     }
 };
 

@@ -17,14 +17,15 @@ class Kwiz extends React.Component {
 
     onChangeHuidigAntwoord(e) {
         this.setState({
-            huidigAntwoord: e.target.value,
+            huidigAntwoord: e.target.value
         });
     }
+
     handleClick() {
         if (this.state.huidigAntwoord !== "") {
             this.props.webSocket.send(
                 JSON.stringify({
-                    type: "ontvangstantwoord",
+                    Type: "ontvangstantwoord",
                     code: this.props.code,
                     antwoord: this.state.huidigAntwoord
                 })
@@ -42,7 +43,7 @@ class Kwiz extends React.Component {
                         <input value={this.state.huidigAntwoord} onChange= {(e) => this.onChangeHuidigAntwoord(e)}/>
                     </div>
                     <div>
-                        <Button bsStyle="primary" onClick={() => this.handleClick()}>Aanmelden</Button>
+                        <Button bsStyle="primary" onClick={() => this.handleClick()}>Antwoorden</Button>
                     </div>
                     <div>
                         Melding: {this.props.melding}
