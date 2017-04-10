@@ -1,12 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 
-var data = {
-    Type: "teamgeaccepteerd",
-    teamnaam: "",
-    geaccepteerd: true
-};
-
 class TeamsaccepterenTeam extends React.Component {
     constructor(props) {
         super(props);
