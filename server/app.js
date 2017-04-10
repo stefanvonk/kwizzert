@@ -70,9 +70,6 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 break;
             case "teamgeaccepteerd":
                 teamGeaccepteerd(data.teamnaam, data.geaccepteerd, session, websocket);
-                session.kwizzen[0].teams.forEach(function (team) {
-                    console.log(team.teamnaam + ": " + team.geaccepteerd);
-                });
                 break;
             case "startkwiz":
                 startkwiz(websocket);
