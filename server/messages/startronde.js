@@ -6,32 +6,43 @@ var functie = function(websocket, categories, session){
 
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
 
-    function vragenOphalen (callback) {
-        let randomQuestions = [];
-
-        categories.forEach(function (categorie) {
-            database.getQuestionsByCategorie(categorie, function (callback) {
+    function fillQuestionsAsync(categories, index, callback){
+        function getQuestionsByCategorie(index, questions) {
+            database.getQuestionsByCategorie(categories[index], function (callback) {
+                let threeQuestions = [];
                 let i = 0;
                 while (i < 3) {
                     let randomVraag = callback[Math.floor(Math.random() * callback.length)];
-                    if (!randomQuestions.includes(randomVraag && !kwiz.gesteldeVragen.includes(randomVraag._id))) {
-                        randomQuestions.push(randomVraag)
+                    if (!threeQuestions.includes(randomVraag && !kwiz.gesteldeVragen.includes(randomVraag._id))) {
+                        threeQuestions.push(randomVraag)
                         i++;
                     }
                 }
-                ;
-                console.log(randomQuestions)
+                questions (threeQuestions);
             });
-        });
-        callback(randomQuestions);
+        }
+
+        if(index != 0){
+            fillQuestionsAsync(categories, --index, function (allQuestions){
+                getQuestionsByCategorie(index + 1, function (questions){
+                    allQuestions.push.apply(allQuestions, questions);
+                    callback(allQuestions)
+                });
+            });
+        } else{
+            getQuestionsByCategorie(0, function (questions){
+                callback (questions);
+            });
+        }
     }
 
-    vragenOphalen(function (callback){
+    fillQuestionsAsync(categories, categories.length -1, function (questions){
         let data = {
             Type: "ontvangstvragen",
-            vragen: callback
+            vragen: questions
         };
-        websocket.send(JSON.stringify(data))
+        websocket.send(JSON.stringify(data));
+        console.log("callback: " + questions);
     });
 };
 
