@@ -3,7 +3,6 @@ var functie = function(code, antwoord, session, websocket){
     if(kwiz) {
         const team = kwiz.teams.find(x => x.teamSocket === websocket);
         if(team){
-            console.log(antwoord);
             team.huidigAntwoord = antwoord;
             let scorebordSocket = kwiz.beamerSocket;
             if(scorebordSocket) {

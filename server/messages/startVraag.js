@@ -14,6 +14,8 @@ var functie = function(vraag, session, websocket){
                 vraag: vraag.name,
                 categorie: vraag.category
             };
+            if(scorebordData.vraagnummer == 0) scorebordData.vraagnummer = 12;
+            scorebordData.rondenummer++;
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
