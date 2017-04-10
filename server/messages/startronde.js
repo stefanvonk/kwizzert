@@ -43,7 +43,6 @@ var functie = function(websocket, categories, session){
         };
         websocket.onopen = function (event) {};
         websocket.send(JSON.stringify(data));
-        console.log("callback: " + questions);
     });
 };
 

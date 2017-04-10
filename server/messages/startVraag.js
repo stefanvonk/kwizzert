@@ -3,7 +3,7 @@ var functie = function(vraag, session, websocket){
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
     if(kwiz) {
         kwiz.gesteldeVragen.push(vraag._id);
-        kwiz.huidigevraag.vraag = vraag.question;
+        kwiz.huidigevraag.vraag = vraag.name;
         kwiz.huidigevraag.antwoord = vraag.answer;
         let scorebordSocket = kwiz.beamerSocket;
         if(scorebordSocket){
@@ -11,7 +11,7 @@ var functie = function(vraag, session, websocket){
                 Type: "scorebordvraag",
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
-                vraag: vraag.question,
+                vraag: vraag.name,
                 categorie: vraag.category
             }
             scorebordSocket.onopen = function (event) {};
@@ -21,7 +21,7 @@ var functie = function(vraag, session, websocket){
             let teamSocket = team.teamSocket;
             let teamData = {
                 Type: "ontvangstvraag",
-                vraag: vraag.question
+                vraag: vraag.name
             }
             teamSocket.onopen = function (event) {};
             teamSocket.send(JSON.stringify(teamData));
