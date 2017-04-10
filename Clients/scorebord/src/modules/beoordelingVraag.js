@@ -1,8 +1,4 @@
 import React from 'react'
-import { Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
-
-import TeamsaccepterenTeam from './teamsaccepterenTeam'
 
 class BeoordelingVraag extends React.Component {
     constructor(props) {
