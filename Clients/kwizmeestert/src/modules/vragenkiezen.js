@@ -15,13 +15,12 @@ class Vragenkiezen extends React.Component {
     }
 
     componentDidMount() {
-        let that = this;
+        const that = this;
         this.props.webSocket.onmessage = function incoming(message) {
-            var data = JSON.parse(message.data);
+            const data = JSON.parse(message.data);
             if(data.Type === "ontvangstvragen") {
                 that.onChangeVragen(data.vragen);
-            }
-            else if(data.Type === "12vragengeweest") {
+            } else if(data.Type === "12vragengeweest") {
                 browserHistory.push('/kwizmeestert/rondestarten');
             }
         };
@@ -41,7 +40,7 @@ class Vragenkiezen extends React.Component {
 
     startVraagButton() {
         if(this.state.gekozenVraag !== null ) {
-            var data = {
+            let data = {
                 Type: "startvraag",
                 vraag: this.state.gekozenVraag
             };
@@ -53,7 +52,7 @@ class Vragenkiezen extends React.Component {
     }
 
     stopVraagButton() {
-        var data = {
+        let data = {
             Type: "stopvraag",
         };
         this.props.webSocket.send(JSON.stringify(data));

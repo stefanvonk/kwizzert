@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-var data = {
+let data = {
     Type: "antwoordgecontroleerd",
     teamnaam: "",
     goedgekeurd: true
@@ -19,9 +19,9 @@ class AntwoordControleren extends React.Component {
     }
 
     componentDidMount() {
-        var that = this;
+        const that = this;
         this.props.webSocket.onmessage = function incoming(message) {
-            var data = JSON.parse(message.data);
+            const data = JSON.parse(message.data);
             if(data.Type === "ontvangstantwoorden") {
                 that.onChangeTeamAntwoorden(data.teamantwoorden);
             }
@@ -46,7 +46,6 @@ class AntwoordControleren extends React.Component {
         data.teamnaam = teamantwoord.teamnaam;
         data.goedgekeurd = true;
         this.onChangeControle(teamantwoord);
-
         this.props.webSocket.send(JSON.stringify(data));
     }
 
@@ -54,13 +53,12 @@ class AntwoordControleren extends React.Component {
         data.teamnaam = teamantwoord.teamnaam;
         data.goedgekeurd = false;
         this.onChangeControle(teamantwoord)
-
         this.props.webSocket.send(JSON.stringify(data));
     }
 
     volgendeVraagButton() {
         if(this.state.teamantwoorden.length === 0) {
-            var data = {
+            let data = {
                 Type: "volgende"
             };
             this.props.webSocket.send(JSON.stringify(data));

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './../App.css';
-import { browserHistory } from 'react-router';
 
 const webSocket = new WebSocket("ws:localhost:3000/");
 
 class App extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             webSocket: webSocket,
             melding: ""

@@ -14,12 +14,11 @@ class Rondestarten extends React.Component {
     }
 
     componentDidMount() {
-        let that = this;
+        const that = this;
         this.props.webSocket.onmessage = function incoming(message) {
-            var data = JSON.parse(message.data);
+            const data = JSON.parse(message.data);
             if(data.Type === "ontvangstcategorieen") {
                 that.onChangeCategorieen(data.categorieen);
-
             }
         };
     }
@@ -48,7 +47,7 @@ class Rondestarten extends React.Component {
 
     startRondeButton() {
         if(this.state.gekozenCategorieen.length === 3) {
-            var data = {
+            let data = {
                 Type: "startronde",
                 categorieen: this.state.gekozenCategorieen
             };
@@ -60,7 +59,7 @@ class Rondestarten extends React.Component {
     }
 
     stopKwizButton() {
-        var data = {
+        let data = {
             Type: "stopkwiz"
         };
         this.props.webSocket.send(JSON.stringify(data));

@@ -76,10 +76,16 @@ var functie = function(session, websocket){
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
                 teamgegevens: teamgegevens
-            }
+            };
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
+
+        let rondeStoppenData = {
+            Type: "12vragengeweest"
+        };
+        websocket.onopen = function (event) {};
+        websocket.send(JSON.stringify(rondeStoppenData));
     } else{
         let database = mongoose.getInstance();
 
