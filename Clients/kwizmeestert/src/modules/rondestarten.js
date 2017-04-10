@@ -8,7 +8,7 @@ class Rondestarten extends React.Component {
         this.state = {
             categorieen: [],
         };
-
+        this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
     }
 
@@ -65,6 +65,7 @@ class Rondestarten extends React.Component {
                 <Button bsStyle="primary" onClick={() => this.startRondeButton()}>Ronde starten</Button>
                 <Button bsStyle="primary" onClick={() => this.stopKwizButton()}>Kwiz stoppen</Button>
                 <div>
+                    <br />
                     Melding: {this.props.melding}
                 </div>
             </div>

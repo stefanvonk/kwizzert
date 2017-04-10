@@ -10,7 +10,7 @@ class Vragenkiezen extends React.Component {
             gekozenVraag: null,
             vraagActief: ""
         };
-
+        this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
     }
 
@@ -19,14 +19,24 @@ class Vragenkiezen extends React.Component {
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.Type === "ontvangstvragen") {
-                that.setState({
-                    vragen: data.vragen
-                });
+                that.onChangeVragen(data.vragen);
             }
             else if(data.Type === "12vragengeweest") {
                 browserHistory.push('/kwizmeestert/rondestarten');
             }
         };
+    }
+
+    onChangeVragen(vragen) {
+        this.setState({
+            vragen: vragen
+        });
+    }
+
+    onChangeVraagActief() {
+        this.setState({
+            vraagActief: "De vraag is gestart."
+        });
     }
 
     startVraagButton() {
@@ -36,9 +46,7 @@ class Vragenkiezen extends React.Component {
                 vraag: this.state.gekozenVraag
             };
             this.props.webSocket.send(JSON.stringify(data));
-            this.setState({
-                vraagActief: "De vraag is gestart."
-            });
+            this.onChangeVraagActief()
         }else {
             this.props.onMeldingChange("Er moet een vraag worden aangevinkt om te starten.");
         }
@@ -82,6 +90,7 @@ class Vragenkiezen extends React.Component {
                 <Button bsStyle="primary" onClick={() => this.startVraagButton()}>Start vraag</Button>
                 <Button bsStyle="primary" onClick={() => this.stopVraagButton()}>Vraag stoppen</Button>
                 <div>
+                    <br />
                     Melding: {this.props.melding}
                 </div>
             </div>

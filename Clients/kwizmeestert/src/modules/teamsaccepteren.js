@@ -12,9 +12,10 @@ class Teamsaccepteren extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams: []
+            teams: [],
+            aantalTeams: 0
         };
-
+        this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
     }
 
@@ -23,36 +24,61 @@ class Teamsaccepteren extends React.Component {
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.Type === "teamaangemeld") {
-                that.state.teams.push(data.teamnaam);
-                that.setState({
-                    teams: that.state.teams
-                });
+                that.onChangeTeamnaam(data.teamnaam);
             }
         };
+    }
+
+    onChangeTeamnaam(teamnaam) {
+        this.state.teams.push(teamnaam);
+        this.setState({
+            teams: this.state.teams
+        });
+    }
+
+    onClickTeam(teamnaam, geaccepteerd) {
+        let index = this.state.teams.indexOf(teamnaam);
+        this.state.teams.splice(index, 1);
+        this.setState({
+            teams: this.state.teams
+        });
+        if(geaccepteerd) {
+            let aantal = this.state.aantalTeams + 1;
+            this.setState({
+                aantalTeams: aantal
+            });
+        }
     }
 
     teamAccepteren(teamnaam){
         data.teamnaam = teamnaam;
         data.geaccepteerd = true;
+        this.onClickTeam(teamnaam, true);
+
         this.props.webSocket.send(JSON.stringify(data));
     }
 
     teamWeigeren(teamnaam){
         data.teamnaam = teamnaam;
         data.geaccepteerd = false;
+        this.onClickTeam(teamnaam, false);
+
         this.props.webSocket.send(JSON.stringify(data));
     }
 
     startButton() {
-        // deze moet nog aangepast worden of er echt als teams zijn geaccepteerd
-        if(this.state.teams.length >= 2) {
-            var data = {
-                Type: "startkwiz"
-            };
-            this.props.webSocket.send(JSON.stringify(data));
-            browserHistory.push('/kwizmeestert/rondestarten');
-        }else {
-            this.props.onMeldingChange("Er moeten zich minimaal 2 teams aanmelden.");
+        if(this.state.aantalTeams >= 2) {
+            if (this.state.teams === []) {
+                var data = {
+                    Type: "startkwiz"
+                };
+                this.props.webSocket.send(JSON.stringify(data));
+                browserHistory.push('/kwizmeestert/rondestarten');
+            } else {
+                this.props.onMeldingChange("Alle teams moeten worden geaccepteerd of geweigerd.");
+            }
+        } else {
+            this.props.onMeldingChange("Er moeten minimaal 2 teams zijn geaccepteerd voordat er een kwiz kan worden gestart.");
         }
     }
 
@@ -74,6 +100,7 @@ class Teamsaccepteren extends React.Component {
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startButton()}>Starten</Button>
                 <div>
+                    <br />
                     Melding: {this.props.melding}
                 </div>
             </div>

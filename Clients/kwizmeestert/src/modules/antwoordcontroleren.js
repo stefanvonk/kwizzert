@@ -14,7 +14,7 @@ class AntwoordControleren extends React.Component {
         this.state = {
             teamantwoorden: []
         };
-
+        this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
     }
 
@@ -34,31 +34,33 @@ class AntwoordControleren extends React.Component {
         });
     }
 
-    antwoordAccepteren(teamnaam){
-        data.teamnaam = teamnaam;
-        data.goedgekeurd = true;
-        this.state.gecontroleerd.push(teamnaam);
+    onChangeControle(teamantwoord) {
+        let index = this.state.teamantwoorden.indexOf(teamantwoord);
+        this.state.teamantwoorden.splice(index, 1);
         this.setState({
-            gecontroleerd: this.state.gecontroleerd
+            teamantwoorden: this.state.teamantwoorden
         });
-        console.log(data);
+    }
+
+    antwoordAccepteren(teamantwoord){
+        data.teamnaam = teamantwoord.teamnaam;
+        data.goedgekeurd = true;
+        this.onChangeControle(teamantwoord);
+
         this.props.webSocket.send(JSON.stringify(data));
     }
 
-    antwoordWeigeren(teamnaam){
-        data.teamnaam = teamnaam;
+    antwoordWeigeren(teamantwoord){
+        data.teamnaam = teamantwoord.teamnaam;
         data.goedgekeurd = false;
-        this.state.gecontroleerd.push(teamnaam);
-        this.setState({
-            gecontroleerd: this.state.gecontroleerd
-        });
-        console.log(data);
+        this.onChangeControle(teamantwoord)
+
         this.props.webSocket.send(JSON.stringify(data));
     }
 
     volgendeVraagButton() {
         // deze moet nog aangepast worden of er echt als teams zijn geaccepteerd
-        if(this.state.gecontroleerd.length === this.state.teamnaam.length) {
+        if(this.state.teamantwoorden !== []) {
             var data = {
                 Type: "volgende"
             };
@@ -76,15 +78,17 @@ class AntwoordControleren extends React.Component {
                 <div>
                     {this.state.teamantwoorden.map((teamantwoord, index) =>
                         <div>
-                            Team: "{teamantwoord.teamnaam}" Antwoord: "{teamantwoord.huidigAntwoord}"
+                            Team: "{teamantwoord.teamnaam}" Antwoord: "{teamantwoord.huidigAntwoord}"<br />
                             <Button bsStyle="success" onClick={() => this.antwoordAccepteren(teamantwoord)}>Goedkeuren</Button>
                             <Button bsStyle="danger" onClick={() => this.antwoordWeigeren(teamantwoord)}>Foutkeuren</Button>
+                            <br /><br />
                         </div>
                     )}
                 </div>
                 <br />
                 <Button bsStyle="primary" onClick={() => this.volgendeVraagButton()}>Volgende vraag</Button>
                 <div>
+                    <br />
                     Melding: {this.props.melding}
                 </div>
             </div>
