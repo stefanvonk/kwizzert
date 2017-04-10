@@ -67,7 +67,6 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 break;
             case "startkwizavond":
                 startkwizavond(data.code, session, websocket);
-                console.log(session);
                 break;
             case "teamgeaccepteerd":
                 teamGeaccepteerd(data.teamnaam, data.geaccepteerd, session, websocket);

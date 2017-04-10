@@ -15,28 +15,6 @@ class App extends Component {
         }
     }
 
-    // componentDidMount(){
-    //     let that = this;
-    //     webSocket.onmessage = function incoming(message) {
-    //         let data = JSON.parse(message.data);
-    //         if(data.Type === "teamgeaccepteerd") {
-    //             that.onMeldingChange(data.melding);
-    //         }
-    //     };
-    // }
-
-    // onMeldingChange(melding) {
-    //     this.setState({
-    //         melding: melding
-    //     });
-    // }
-    //
-    // onTeamNaamChange(teamNaam) {
-    //     this.setState({
-    //         teamNaam: teamNaam
-    //     });
-    // }
-
     handleChangeCategorieen(catnaam) {
         this.state.gekozenCategorieen.push(catnaam);
         this.setState({

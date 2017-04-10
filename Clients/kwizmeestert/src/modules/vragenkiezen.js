@@ -55,11 +55,6 @@ class Vragenkiezen extends React.Component {
             gekozenVraag: vraag
         });
         console.log(this.state.gekozenVraag);
-
-        // this.state.categorieen.push(catname);
-        // this.setState({
-        //     categorieen: that.state.categorieen
-        // });
     }
 
     render() {
@@ -71,7 +66,7 @@ class Vragenkiezen extends React.Component {
                     <form>
                         {this.state.vragen.map((item, index) =>
                             <label>
-                                {item}
+                                {item.question}
                                 <input
                                     name="vragen"
                                     type="radio"
