@@ -69,7 +69,7 @@ class Vragenkiezen extends React.Component {
     render() {
         return (
             <div className="App">
-                <h1>Ronde</h1>
+                <h1>Vraag kiezen</h1>
                 <h2>Kies hieronder een vraag:</h2>
                 <div>
                     <form>

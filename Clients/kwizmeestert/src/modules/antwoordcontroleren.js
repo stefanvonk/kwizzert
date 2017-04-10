@@ -59,8 +59,7 @@ class AntwoordControleren extends React.Component {
     }
 
     volgendeVraagButton() {
-        // deze moet nog aangepast worden of er echt als teams zijn geaccepteerd
-        if(this.state.teamantwoorden !== []) {
+        if(this.state.teamantwoorden.length === 0) {
             var data = {
                 Type: "volgende"
             };

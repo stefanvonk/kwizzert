@@ -68,7 +68,7 @@ class Teamsaccepteren extends React.Component {
 
     startButton() {
         if(this.state.aantalTeams >= 2) {
-            if (this.state.teams === []) {
+            if (this.state.teams.length === 0) {
                 var data = {
                     Type: "startkwiz"
                 };
