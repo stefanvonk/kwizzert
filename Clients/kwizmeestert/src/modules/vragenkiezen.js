@@ -7,7 +7,7 @@ class Vragenkiezen extends React.Component {
         super(props);
         this.state = {
             vragen: [],
-            gekozenVraag: "",
+            gekozenVraag: null,
             vraagActief: ""
         };
 
@@ -19,9 +19,8 @@ class Vragenkiezen extends React.Component {
         this.props.webSocket.onmessage = function incoming(message) {
             var data = JSON.parse(message.data);
             if(data.Type === "ontvangstvragen") {
-                that.state.vragen.push(data.vragen);
                 that.setState({
-                    vragen: that.state.vragen
+                    vragen: data.vragen
                 });
             }
             if(data.Type === "12vragengeweest") {
@@ -31,7 +30,7 @@ class Vragenkiezen extends React.Component {
     }
 
     startVraagButton() {
-        if(this.state.gekozenVraag !== "" ) {
+        if(this.state.gekozenVraag !== null ) {
             var data = {
                 Type: "startvraag",
                 vraag: this.state.gekozenVraag
@@ -57,7 +56,6 @@ class Vragenkiezen extends React.Component {
         this.setState({
             gekozenVraag: vraag
         });
-        console.log(this.state.gekozenVraag);
     }
 
     render() {
@@ -69,11 +67,12 @@ class Vragenkiezen extends React.Component {
                     <form>
                         {this.state.vragen.map((item, index) =>
                             <label>
-                                {item.question}
+                                {item.name}
                                 <input
                                     name="vragen"
                                     type="radio"
                                     onChange={() => this.handleChangeVraag(item)} />
+                                <br />
                             </label>
                         )}
                     </form>

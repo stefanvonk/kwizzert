@@ -81,6 +81,7 @@ theWebSocketServer.on('connection', function connection(websocket) {
                 stopKwiz(session, websocket);
                 break;
             case "startvraag":
+                console.log(data.vraag);
                 startVraag(data.vraag, session, websocket);
                 break;
             case "stopvraag":
