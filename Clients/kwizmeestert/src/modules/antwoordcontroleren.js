@@ -12,7 +12,9 @@ class AntwoordControleren extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teamantwoorden: []
+            teamantwoorden: [],
+            huidigevraag: "",
+            huidigantwoord: ""
         };
         this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
@@ -23,14 +25,16 @@ class AntwoordControleren extends React.Component {
         this.props.webSocket.onmessage = function incoming(message) {
             const data = JSON.parse(message.data);
             if(data.Type === "ontvangstantwoorden") {
-                that.onChangeTeamAntwoorden(data.teamantwoorden);
+                that.onChangeTeamAntwoorden(data.teamantwoorden, data.huidigevraag, data.huidigantwoord);
             }
         };
     }
 
-    onChangeTeamAntwoorden(teamantwoorden){
+    onChangeTeamAntwoorden(teamantwoorden, huidigevraag, huidigantwoord){
         this.setState({
-            teamantwoorden: teamantwoorden
+            teamantwoorden: teamantwoorden,
+            huidigevraag: huidigevraag,
+            huidigantwoord: huidigantwoord
         });
     }
 
@@ -57,7 +61,9 @@ class AntwoordControleren extends React.Component {
     }
 
     volgendeVraagButton() {
-        if(this.state.teamantwoorden.length === 0) {
+        if(this.props.gesteldeVragen % 12 === 0) {
+            browserHistory.push('/kwizmeestert/rondestarten');
+        } else if(this.state.teamantwoorden.length === 0) {
             let data = {
                 Type: "volgende"
             };
@@ -73,6 +79,9 @@ class AntwoordControleren extends React.Component {
             <div className="App">
                 <h1>Antwoorden van teams</h1>
                 <div>
+                    <h2><b>Vraag:</b> {this.state.huidigevraag}</h2>
+                    <h2><b>Antwoord:</b> {this.state.huidigantwoord}</h2>
+                    <br />
                     {this.state.teamantwoorden.map((teamantwoord, index) =>
                         <div>
                             Team: "{teamantwoord.teamnaam}" Antwoord: "{teamantwoord.huidigAntwoord}"<br />

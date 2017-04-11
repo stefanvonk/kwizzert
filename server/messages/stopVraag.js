@@ -39,7 +39,9 @@ var functie = function(session, websocket){
 
         let kwizmeestertData = {
             Type: "ontvangstantwoorden",
-            teamantwoorden: []
+            teamantwoorden: [],
+            huidigevraag: kwiz.huidigevraag.vraag,
+            huidigantwoord: kwiz.huidigevraag.antwoord
         };
 
         kwiz.teams.forEach(function(team) {

@@ -68,7 +68,7 @@ var functie = function(session, websocket){
             teamgegevensObject.vragengoed = team.vragenGoed;
 
             teamgegevens.push(teamgegevensObject);
-        })
+        });
 
         if(scorebordSocket){
             scorebordData = {
@@ -80,12 +80,6 @@ var functie = function(session, websocket){
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
-
-        let rondeStoppenData = {
-            Type: "12vragengeweest"
-        };
-        websocket.onopen = function (event) {};
-        websocket.send(JSON.stringify(rondeStoppenData));
     } else{
         let database = mongoose.getInstance();
 

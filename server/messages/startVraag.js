@@ -5,6 +5,9 @@ var functie = function(vraag, session, websocket){
         kwiz.gesteldeVragen.push(vraag._id);
         kwiz.huidigevraag.vraag = vraag.name;
         kwiz.huidigevraag.antwoord = vraag.answer;
+        kwiz.teams.forEach(function (team) {
+            team.huidigAntwoord = "Geen antwoord gegeven.";
+        });
         let scorebordSocket = kwiz.beamerSocket;
         if(scorebordSocket){
             scorebordData = {

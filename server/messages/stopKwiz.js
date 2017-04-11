@@ -13,21 +13,22 @@ var functie = function(session, websocket){
             scorelijstObject.rondepunten = team.rondepunten;
 
             scorelijst.push(scorelijstObject);
-        })
+        });
 
         if(scorebordSocket) {
             let scorebordData = {
                 Type: "scorelijst",
                 scorelijst: scorelijst
-            }
+            };
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
+
         kwiz.teams.forEach(function (team) {
             let teamSocket = team.teamSocket;
             let teamData = {
                 Type: "kwizgestopt"
-            }
+            };
             teamSocket.onopen = function (event) {};
             teamSocket.send(JSON.stringify(teamData));
         });

@@ -8,7 +8,8 @@ class App extends Component {
         super(props);
         this.state = {
             webSocket: webSocket,
-            melding: ""
+            melding: "",
+            gesteldeVragen: 0
         }
     }
 
@@ -18,11 +19,19 @@ class App extends Component {
         });
     }
 
+    onGesteldeVragenChange() {
+        this.state.gesteldeVragen++;
+        this.setState({
+            gesteldeVragen: this.state.gesteldeVragen
+        });
+        console.log("in functie:" + this.state.gesteldeVragen)
+    }
+
     render() {
         const { children } = this.props;
         return (
             <div>
-                { children && React.cloneElement(children, { webSocket:this.state.webSocket, melding: this.state.melding, onMeldingChange: this.onMeldingChange.bind(this) }) }
+                { children && React.cloneElement(children, { webSocket:this.state.webSocket,  melding: this.state.melding, gesteldeVragen:this.state.gesteldeVragen, onMeldingChange: this.onMeldingChange.bind(this), onGesteldeVragenChange: this.onGesteldeVragenChange.bind(this) }) }
             </div>
         )
     }

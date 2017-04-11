@@ -50,7 +50,9 @@ class Kwizstarten extends React.Component {
         return (
             <div className="App">
                 <h1>Kwizavond starten</h1>
-                <FormControl className="width80" type="text" onChange= {(e) => this.onChangeCode(e)}/>
+                <input value={this.state.typed} onChange= {(e) => this.onChangeCode(e)}/>
+                <br />
+                <br />
                 <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Starten</Button>
                 <div>
                     <br />

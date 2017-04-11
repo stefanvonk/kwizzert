@@ -42,9 +42,11 @@ class Kwiz extends React.Component {
                         <h3>Antwoord:</h3>
                         <input value={this.state.huidigAntwoord} onChange= {(e) => this.onChangeHuidigAntwoord(e)}/>
                     </div>
+                    <br />
                     <div>
                         <Button bsStyle="primary" onClick={() => this.handleClick()}>Antwoorden</Button>
                     </div>
+                    <br />
                     <div>
                         Melding: {this.props.melding}
                     </div>

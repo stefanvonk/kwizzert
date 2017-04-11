@@ -8,7 +8,8 @@ class Vragenkiezen extends React.Component {
         this.state = {
             vragen: [],
             gekozenVraag: null,
-            vraagActief: ""
+            vraagActief: "",
+            vraagGesteld: false
         };
         this.props.onMeldingChange("");
         this.props.webSocket.onopen = function (event) {};
@@ -20,9 +21,10 @@ class Vragenkiezen extends React.Component {
             const data = JSON.parse(message.data);
             if(data.Type === "ontvangstvragen") {
                 that.onChangeVragen(data.vragen);
-            } else if(data.Type === "12vragengeweest") {
-                browserHistory.push('/kwizmeestert/rondestarten');
             }
+            // else if(data.Type === "12vragengeweest") {
+            //     browserHistory.push('/kwizmeestert/rondestarten');
+            // }
         };
     }
 
@@ -34,19 +36,25 @@ class Vragenkiezen extends React.Component {
 
     onChangeVraagActief() {
         this.setState({
-            vraagActief: "De vraag is gestart."
+            vraagActief: "De vraag is gestart.",
+            vraagGesteld: true
         });
     }
 
     startVraagButton() {
         if(this.state.gekozenVraag !== null ) {
-            let data = {
-                Type: "startvraag",
-                vraag: this.state.gekozenVraag
-            };
-            this.props.webSocket.send(JSON.stringify(data));
-            this.onChangeVraagActief()
-        }else {
+            if(this.state.vraagGesteld === false) {
+                let data = {
+                    Type: "startvraag",
+                    vraag: this.state.gekozenVraag
+                };
+                this.props.webSocket.send(JSON.stringify(data));
+                this.onChangeVraagActief();
+                this.props.onGesteldeVragenChange();
+            } else {
+                this.props.onMeldingChange("Er is al een vraag gesteld.");
+            }
+        } else {
             this.props.onMeldingChange("Er moet een vraag worden aangevinkt om te starten.");
         }
     }
@@ -84,7 +92,9 @@ class Vragenkiezen extends React.Component {
                         )}
                     </form>
                 </div>
-                {this.state.vraagActief}
+                <br />
+                <b>{this.state.vraagActief}</b>
+                <br />
                 <br />
                 <Button bsStyle="primary" onClick={() => this.startVraagButton()}>Start vraag</Button>
                 <Button bsStyle="primary" onClick={() => this.stopVraagButton()}>Vraag stoppen</Button>
