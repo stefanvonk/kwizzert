@@ -295,7 +295,6 @@ Het opslaan van dit object in het geheugen heeft een aantal voordelen. Via dit o
 Een nadeel van het opslaan in het geheugen is dat de kwiz op deze manier niet extern wordt opgeslagen. Mocht er nu een fout optreden zodat de applicatie crasht is het na restart niet mogelijk om verder te gaan waar men gebleven was.
 De voordelen zijn op dit moment belangrijker dan de nadelen omdat het er in deze applicatie niet om gaat dat de kwiz moet worden opgeslagen. Dit is een functionaliteit die later eventueel kan worden ingebouwd. Snelheid is daarentegen belangrijk in deze applicatie.
 
-
 ## Externe libs
 * React
 * Node.js
@@ -304,12 +303,6 @@ De voordelen zijn op dit moment belangrijker dan de nadelen omdat het er in deze
 * MongDB
 * Mongoose
 * (Redux)
-
-## Build proces
-_Volgt later_
-
-## Code style
-https://github.com/airbnb/javascript
 
 ## Extra
 * Veiligheid
