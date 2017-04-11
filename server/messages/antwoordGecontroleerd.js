@@ -12,7 +12,7 @@ var functie = function(teamnaam, goedgekeurd, session, websocket){
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
         const team = kwiz.teams.find(x => x.teamnaam === teamnaam);
-        if(team){
+        if(team && goedgekeurd){
             team.vragenGoed++;
         }
     }

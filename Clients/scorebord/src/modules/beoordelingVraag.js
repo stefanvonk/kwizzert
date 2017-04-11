@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Table } from 'react-bootstrap';
 
 class BeoordelingVraag extends React.Component {
     render() {
-        console.log(this.props.teams);
         return (
             <div className="App">
                 <div>
@@ -11,32 +11,52 @@ class BeoordelingVraag extends React.Component {
                 <div>
                     Vraagnr: {this.props.vraagnummer}
                 </div>
-                <table>
-                    <tr>
-                        <th>Teamnaam</th>
-                        <th>Antwoord</th>
-                        <th></th>
-                        <th>Rondepunten</th>
-                        <th>Vragen goed</th>
-                    </tr>
-                    {this.props.teams.map((team) =>
-                        <BeoordelingTeam team={team}/>
-                    )}
-                </table>
+                <Table striped bordered condensed hover>
+                    <thead>
+                        <tr>
+                            <th>Teamnaam</th>
+                            <th>Antwoord</th>
+                            <th>Antwoord goed</th>
+                            <th>Rondepunten</th>
+                            <th>Vragen goed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.teams.map((team) =>
+                            <BeoordelingTeam team={team}/>
+                        )}
+                    </tbody>
+                </Table>
             </div>
         );
     }
 }
 
 class BeoordelingTeam extends React.Component {
+    setAntwoordGoed(antwoordGoed) {
+        if(antwoordGoed) {
+            return "Goed";
+        } else if (antwoordGoed == null){
+            return "";
+        } else{
+            return "Fout";
+        }
+    }
+
+    setVragenGoed(vragenGoed, antwoordGoed){
+        if(antwoordGoed)
+            vragenGoed++;
+        return vragenGoed;
+    }
+
     render() {
         return(
             <tr>
                 <td>{this.props.team.teamnaam}</td>
                 <td>{this.props.team.antwoord}</td>
-                {/*<td>{this.props.team.antwoordGoed}</td>*/}
+                <td>{this.setAntwoordGoed(this.props.team.antwoordGoed)}</td>
                 <td>{this.props.team.rondepunten}</td>
-                <td>{this.props.team.vragengoed}</td>
+                <td>{this.setVragenGoed(this.props.team.vragengoed, this.props.team.antwoordGoed)}</td>
             </tr>
         )
     }

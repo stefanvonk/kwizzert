@@ -23,9 +23,9 @@ class App extends Component {
         let that = this;
         webSocket.onmessage = function incoming(message) {
             let data = JSON.parse(message.data);
-            console.log("message komt binnen van type: " + data.Type);
             switch (data.Type) {
                 case "scorebordvraag":
+                    that.onChangeTeams([]);
                     that.onRondenummerChange(data.rondenummer);
                     that.onVraagnummerChange(data.vraagnummer);
                     that.onVraagChange(data.vraag);
@@ -108,10 +108,12 @@ class App extends Component {
     }
 
     controleerAntwoord(teamnaam, goedgekeurd) {
+        let that = this;
         this.state.teams.forEach(function (team, index) {
             if (team.teamnaam === teamnaam) {
-                this.setState({
-                    teams: (this.state.teams[index].antwoordGoed = goedgekeurd)
+                that.state.teams[index].antwoordGoed = goedgekeurd;
+                that.setState({
+                    teams: that.state.teams
                 })
             }
         });
