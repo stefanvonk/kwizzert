@@ -22,7 +22,6 @@ class App extends Component {
         let that = this;
         webSocket.onmessage = function incoming(message) {
             let data = JSON.parse(message.data);
-            console.log(data.Type);
             if(data.Type === "teamgeaccepteerd") {
                 that.onMeldingChange(data.melding);
                 if(data.melding === "geaccepteerd"){
@@ -34,7 +33,6 @@ class App extends Component {
             } else if(data.Type === "afbrekenvraag") {
                 that.onHuidigeVraagChange("Wachten op vraag...");
             } else if(data.Type === "kwizgestopt") {
-                console.log("komt in kwizgestopt");
                 browserHistory.push('/team/kwizgesloten');
             }
         };
