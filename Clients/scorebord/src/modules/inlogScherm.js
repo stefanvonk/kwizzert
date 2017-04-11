@@ -63,9 +63,11 @@ class InlogScherm extends React.Component {
                     <h3>Code:</h3>
                     <input value={this.state.code} onChange= {(e) => this.onChangeCode(e)}/>
                 </div>
+                <br />
                 <div>
                     <Button bsStyle="primary" onClick={() => this.handleClick()}>Aanmelden</Button>
                 </div>
+                <br />
                 <div>
                     Melding: {this.props.melding}
                 </div>

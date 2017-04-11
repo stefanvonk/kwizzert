@@ -56,7 +56,7 @@ class AntwoordControleren extends React.Component {
     antwoordWeigeren(teamantwoord){
         data.teamnaam = teamantwoord.teamnaam;
         data.goedgekeurd = false;
-        this.onChangeControle(teamantwoord)
+        this.onChangeControle(teamantwoord);
         this.props.webSocket.send(JSON.stringify(data));
     }
 

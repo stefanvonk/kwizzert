@@ -24,7 +24,6 @@ class App extends Component {
         this.setState({
             gesteldeVragen: this.state.gesteldeVragen
         });
-        console.log("in functie:" + this.state.gesteldeVragen)
     }
 
     render() {
