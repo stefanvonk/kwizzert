@@ -4,14 +4,26 @@ var functie = function(session, websocket){
         let scorebordSocket = kwiz.beamerSocket;
         let scorelijst = [];
 
+        let hoogsteScore = 0;
         kwiz.teams.forEach(function (team) {
-            let scorelijstObject = {
-                teamnaam: team.teamnaam,
-                rondepunten: team.rondepunten
-            };
-
-            scorelijst.push(scorelijstObject);
+            if (team.rondepunten > hoogsteScore) {
+                hoogsteScore = team.rondepunten;
+            }
         });
+
+        while(scorelijst.length < kwiz.teams.length || hoogsteScore == -1){
+            kwiz.teams.forEach(function (team) {
+                if(team.rondepunten == hoogsteScore){
+                    let scorelijstObject = {
+                        teamnaam: team.teamnaam,
+                        rondepunten: team.rondepunten
+                    };
+
+                    scorelijst.push(scorelijstObject);
+                }
+            });
+            hoogsteScore--;
+        }
 
         if(scorebordSocket) {
             let scorebordData = {
