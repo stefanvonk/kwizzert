@@ -53,33 +53,41 @@ var functie = function(session, websocket){
         });
         let scorebordSocket = kwiz.beamerSocket;
 
-        let teamgegevens = [];
-        let teamgegevensObject = {
-            teamnaam: "",
-            antwoord: "",
-            rondepunten: 0,
-            vragengoed: 0
-        };
-
-        kwiz.teams.forEach(function (team) {
-            teamgegevensObject.teamnaam = team.teamnaam;
-            teamgegevensObject.antwoord = team.huidigAntwoord;
-            teamgegevensObject.rondepunten = team.rondepunten;
-            teamgegevensObject.vragengoed = team.vragenGoed;
-
-            teamgegevens.push(teamgegevensObject);
-        });
-
         if(scorebordSocket){
+            let teamgegevens = [];
+            kwiz.teams.forEach(function (team) {
+                let teamGegevens = {
+                    teamnaam: team.teamnaam,
+                    antwoord: team.huidigAntwoord,
+                    rondepunten: team.rondepunten,
+                    vragengoed: team.vragenGoed
+                };
+                teamgegevens.push(teamGegevens);
+            });
+
             scorebordData = {
                 Type: "scorebordteamgegevens",
                 rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
                 teamgegevens: teamgegevens
             };
+            console.log(scorebordData);
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }
+
+        websocket.onopen = function (event) {};
+        let database = mongoose.getInstance();
+        database.getAllCategories(function (callback){
+            callback.forEach(function (item) {
+                let data = {
+                    Type: "ontvangstcategorieen",
+                    categorieen: item
+                };
+                websocket.send(JSON.stringify(data))
+            })
+        });
+
     } else{
         let database = mongoose.getInstance();
 

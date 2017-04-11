@@ -94,10 +94,18 @@ class App extends Component {
     }
 
     onNewTeam(teamnaam) {
-        this.state.teams.push(teamnaam);
-        this.setState({
-            teams: this.state.teams
-        });
+        let found = false;
+        for (let i = 0; i < this.state.teams.length && !found; i++) {
+            if (this.state.teams[i] === teamnaam) {
+                found = true;
+            }
+        }
+        if(!found) {
+            this.state.teams.push(teamnaam);
+            this.setState({
+                teams: this.state.teams
+            });
+        }
     }
 
     onNewGeaccepteerdTeam(teamnaam) {
