@@ -13,7 +13,8 @@ class App extends Component {
             melding: "",
             code: "",
             webSocket: webSocket,
-            huidigeVraag: "Wachten op vraag..."
+            huidigeVraag: "Wachten op vraag...",
+            huidigAntwoord: ""
         }
     }
 
@@ -28,6 +29,7 @@ class App extends Component {
                 }
             } else if(data.Type === "ontvangstvraag") {
                 that.onHuidigeVraagChange(data.vraag);
+                that.onHuidigAntwoordLeegChange();
             } else if(data.Type === "afbrekenvraag") {
                 that.onHuidigeVraagChange("Wachten op vraag...");
             } else if(data.Type === "kwizgestopt") {
@@ -39,6 +41,18 @@ class App extends Component {
     onMeldingChange(melding) {
         this.setState({
             melding: melding
+        });
+    }
+
+    onChangeHuidigAntwoord(e) {
+        this.setState({
+            huidigAntwoord: e.target.value
+        });
+    }
+
+    onHuidigAntwoordLeegChange() {
+        this.setState({
+            huidigAntwoord: ""
         });
     }
 
@@ -64,7 +78,7 @@ class App extends Component {
       const { children } = this.props
       return (
           <div>
-              { children && React.cloneElement(children, { webSocket:this.state.webSocket, code: this.state.code, melding: this.state.melding, huidigeVraag:this.state.huidigeVraag, onTeamNaamChange: this.onTeamNaamChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this), onCodeChange: this.onCodeChange.bind(this)}) }
+              { children && React.cloneElement(children, { webSocket:this.state.webSocket, code: this.state.code, melding: this.state.melding, huidigeVraag:this.state.huidigeVraag, huidigAntwoord:this.state.huidigAntwoord, onTeamNaamChange: this.onTeamNaamChange.bind(this), onChangeHuidigAntwoord: this.onChangeHuidigAntwoord.bind(this), onHuidigAntwoordLeegChange: this.onHuidigAntwoordLeegChange.bind(this), onMeldingChange: this.onMeldingChange.bind(this), onCodeChange: this.onCodeChange.bind(this)}) }
           </div>
       )
   }

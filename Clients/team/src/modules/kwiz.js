@@ -4,30 +4,17 @@ import { Button } from 'react-bootstrap';
 class Kwiz extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            teamNaam: "",
-            huidigeVraag: "Wachten op vraag...",
-            huidigAntwoord: ""
-        };
-
         this.props.webSocket.onopen = function (event) {
         };
     }
 
-    onChangeHuidigAntwoord(e) {
-        this.setState({
-            huidigAntwoord: e.target.value
-        });
-    }
-
     handleClick() {
-        if (this.state.huidigAntwoord !== "") {
+        if (this.props.huidigAntwoord !== "") {
             this.props.webSocket.send(
                 JSON.stringify({
                     Type: "ontvangstantwoord",
                     code: this.props.code,
-                    antwoord: this.state.huidigAntwoord
+                    antwoord: this.props.huidigAntwoord
                 })
             );
         }
@@ -40,7 +27,7 @@ class Kwiz extends React.Component {
                     <h1>{this.props.huidigeVraag}</h1>
                     <div>
                         <h3>Antwoord:</h3>
-                        <input value={this.state.huidigAntwoord} onChange= {(e) => this.onChangeHuidigAntwoord(e)}/>
+                        <input value={this.props.huidigAntwoord} onChange= {(e) => this.props.onChangeHuidigAntwoord(e)}/>
                     </div>
                     <br />
                     <div>

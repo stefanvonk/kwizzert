@@ -22,9 +22,6 @@ class Vragenkiezen extends React.Component {
             if(data.Type === "ontvangstvragen") {
                 that.onChangeVragen(data.vragen);
             }
-            // else if(data.Type === "12vragengeweest") {
-            //     browserHistory.push('/kwizmeestert/rondestarten');
-            // }
         };
     }
 
@@ -60,7 +57,7 @@ class Vragenkiezen extends React.Component {
     }
 
     stopVraagButton() {
-        if(this.state.gekozenVraag !== null ) {
+        if(this.state.vraagGesteld === true ) {
             let data = {
                 Type: "stopvraag",
             };
