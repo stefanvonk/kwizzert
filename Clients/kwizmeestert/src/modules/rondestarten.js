@@ -73,16 +73,20 @@ class Rondestarten extends React.Component {
                 <h2>Kies hieronder drie categorieën:</h2>
                 <div>
                     <form>
-                        {this.state.categorieen.map((item, index) =>
-                            <label>
-                                {item}
-                                <input
-                                name="categorieen"
-                                type="checkbox"
-                                onChange={() => this.handleChangeCategorieen(item)} />
-                                <br />
-                            </label>
-                        )}
+                        <ul>
+                            {this.state.categorieen.map((item, index) =>
+                                <li>
+                                    <label>
+                                        {item}
+                                        <input
+                                        name="categorieen"
+                                        type="checkbox"
+                                        onChange={() => this.handleChangeCategorieen(item)} />
+                                        <br />
+                                    </label>
+                                </li>
+                            )}
+                        </ul>
                     </form>
                 </div>
                 <br />
@@ -93,7 +97,6 @@ class Rondestarten extends React.Component {
                     Melding: {this.props.melding}
                 </div>
             </div>
-
         );
     }
 }

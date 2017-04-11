@@ -60,11 +60,15 @@ class Vragenkiezen extends React.Component {
     }
 
     stopVraagButton() {
-        let data = {
-            Type: "stopvraag",
-        };
-        this.props.webSocket.send(JSON.stringify(data));
-        browserHistory.push('/kwizmeestert/antwoordcontroleren');
+        if(this.state.gekozenVraag !== null ) {
+            let data = {
+                Type: "stopvraag",
+            };
+            this.props.webSocket.send(JSON.stringify(data));
+            browserHistory.push('/kwizmeestert/antwoordcontroleren');
+        } else {
+            this.props.onMeldingChange("Er moet een vraag gestart zijn voordat u deze kunt stoppen.");
+        }
     }
 
     handleChangeVraag(vraag){
@@ -80,16 +84,20 @@ class Vragenkiezen extends React.Component {
                 <h2>Kies hieronder een vraag:</h2>
                 <div>
                     <form>
-                        {this.state.vragen.map((item, index) =>
-                            <label>
-                                {item.name}
-                                <input
-                                    name="vragen"
-                                    type="radio"
-                                    onChange={() => this.handleChangeVraag(item)} />
-                                <br />
-                            </label>
-                        )}
+                        <ul>
+                            {this.state.vragen.map((item, index) =>
+                                <li>
+                                    <label>
+                                        {item.name}
+                                        <input
+                                            name="vragen"
+                                            type="radio"
+                                            onChange={() => this.handleChangeVraag(item)} />
+                                        <br />
+                                    </label>
+                                </li>
+                            )}
+                        </ul>
                     </form>
                 </div>
                 <br />
