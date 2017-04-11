@@ -37,8 +37,10 @@ class Aanmelden extends React.Component {
                     teamnaam: this.state.teamNaam
                 })
             );
+            this.props.onMeldingChange("Wacht op acceptatie door de kwizmeestert...");
+        } else {
+            this.props.onMeldingChange("Er moet een teamnaam en een code worden ingevuld.");
         }
-        this.props.onMeldingChange(".....");
     }
 
     render() {

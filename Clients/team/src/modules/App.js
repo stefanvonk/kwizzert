@@ -30,9 +30,9 @@ class App extends Component {
                 }
             } else if(data.Type === "ontvangstvraag") {
                 that.onHuidigeVraagChange(data.vraag);
-                that.onHuidigAntwoordLeegChange();
             } else if(data.Type === "afbrekenvraag") {
                 that.onHuidigeVraagChange("Wachten op vraag...");
+                that.onHuidigAntwoordLeegChange();
             } else if(data.Type === "kwizgestopt") {
                 console.log("komt in kwizgestopt");
                 browserHistory.push('/team/kwizgesloten');

@@ -51,8 +51,9 @@ class InlogScherm extends React.Component {
                     code: this.state.code
                 })
             );
+        } else {
+            this.onMeldingChange("Er moet een correcte code worden ingevoerd.");
         }
-        this.onMeldingChange(".....");
     }
 
     render() {
@@ -69,7 +70,7 @@ class InlogScherm extends React.Component {
                 </div>
                 <br />
                 <div>
-                    Melding: {this.props.melding}
+                    {this.props.melding}
                 </div>
             </div>
         );
