@@ -125,6 +125,8 @@ object: {
         String: teamnaam,
         String: antwoord,
       }]: _teamantwoorden_
+    * String: _vraag_
+    * String: _antwoord_
 
 ### Scorebord-app
 * ws
