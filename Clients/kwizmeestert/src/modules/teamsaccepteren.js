@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
-const Loader = require('react-loader');
 
 let data = {
     Type: "teamgeaccepteerd",
@@ -87,8 +86,6 @@ class Teamsaccepteren extends React.Component {
         return (
             <div className="App">
                 <h1>Teams</h1>
-                <Loader loaded={this.state.loaded}>
-                </Loader>
                 <div>
                     {this.state.teams.map((item, index) =>
                         <div>

@@ -17,8 +17,11 @@ class Kwiz extends React.Component {
                     antwoord: this.props.huidigAntwoord
                 })
             );
+            this.props.onMeldingChange("Het antwoord is verzonden.");
+        } else {
+            this.props.onMeldingChange("Het antwoord moet worden ingevuld worden ingevuld.");
         }
-        this.props.onMeldingChange(".....");
+
     }
 
         render() {
