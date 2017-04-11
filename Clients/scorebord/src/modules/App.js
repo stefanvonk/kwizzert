@@ -55,7 +55,7 @@ class App extends Component {
                     that.controleerAntwoord(data.teamnaam, data.goedgekeurd);
                     break;
                 case "scorelijst":
-                    browserHistory.push('scorebord/achterafKwiz')
+                    browserHistory.push('/scorebord/achterafKwiz');
                     that.onChangeScorelijst(data.scorelijst);
                     break;
             }

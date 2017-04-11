@@ -2,7 +2,6 @@ const mongoose = require('./../DatabaseConnection/mongoose.js');
 
 var functie = function(session, websocket){
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
-    console.log(kwiz.gesteldeVragen.length);
     if(kwiz.gesteldeVragen.length % 12 == 0){
         let maxAntwoordenGoed = -1;
         let teamsMetPunten = 0;
