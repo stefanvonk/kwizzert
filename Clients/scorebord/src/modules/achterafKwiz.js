@@ -1,34 +1,6 @@
 import React from 'react';
 
 class AchterafKwiz extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            scorelijst: []
-        }
-
-        this.props.webSocket.onopen = function (event) {};
-    }
-
-    componentDidMount(){
-        let that = this;
-        this.props.webSocket.onmessage = function incoming(message) {
-            let data = JSON.parse(message.data);
-            switch(data.Type) {
-                case "scorelijst":
-                    that.onChangeScorelijst(data.scorelijst)
-                    break;
-            }
-        };
-    }
-
-    onChangeScorelijst(scorelijst) {
-        this.setState({
-            scorelijst: scorelijst
-        });
-    }
-
     render() {
         return (
             <div className="App">
@@ -38,7 +10,7 @@ class AchterafKwiz extends React.Component {
                         <td>Teamnaam</td>
                         <td>Punten</td>
                     </th>
-                    {this.state.scorelijst.forEach((score) =>
+                    {this.props.scorelijst.forEach((score) =>
                         <tr>
                             <td>{score.teamnaam}</td>
                             <td>{score.rondepunten}</td>

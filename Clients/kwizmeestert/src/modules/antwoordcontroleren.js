@@ -61,14 +61,16 @@ class AntwoordControleren extends React.Component {
     }
 
     volgendeVraagButton() {
-        if(this.props.gesteldeVragen % 12 === 0) {
-            browserHistory.push('/kwizmeestert/rondestarten');
-        } else if(this.state.teamantwoorden.length === 0) {
+        if(this.state.teamantwoorden.length === 0) {
             let data = {
                 Type: "volgende"
             };
             this.props.webSocket.send(JSON.stringify(data));
-            browserHistory.push('/kwizmeestert/vragenkiezen');
+            if(this.props.gesteldeVragen % 12 === 0) {
+                browserHistory.push('/kwizmeestert/rondestarten');
+            } else {
+                browserHistory.push('/kwizmeestert/vragenkiezen');
+            }
         }else {
             this.props.onMeldingChange("Alle antwoorden moeten worden beoordeeld.");
         }

@@ -15,7 +15,8 @@ class App extends Component {
             vraag: "",
             categorie: "",
             teams: [],
-            geaccepteerdeTeams: []
+            geaccepteerdeTeams: [],
+            scorelijst: []
         }
     }
 
@@ -53,6 +54,8 @@ class App extends Component {
                 case "scorebordgecontroleerdantwoord":
                     that.controleerAntwoord(data.teamnaam, data.goedgekeurd);
                     break;
+                case "scorelijst":
+                    that.onChangeScorelijst(data.scorelijst);
             }
         };
     }
@@ -90,6 +93,12 @@ class App extends Component {
     onChangeTeams(teams) {
         this.setState({
             teams: teams
+        });
+    }
+
+    onChangeScorelijst(scorelijst) {
+        this.setState({
+            scorelijst: scorelijst
         });
     }
 
@@ -133,6 +142,7 @@ class App extends Component {
         return (
             <div>
                 { children && React.cloneElement(children, {
+                    scorelijst: this.state.scorelijst,
                     teams: this.state.teams,
                     categorie: this.state.categorie,
                     vraag: this.state.vraag,

@@ -2,8 +2,9 @@ const mongoose = require('./../DatabaseConnection/mongoose.js');
 
 var functie = function(session, websocket){
     const kwiz = session.kwizzen.find(x => x.kwizmeestertSocket === websocket);
-    if(kwiz.gesteldeVragen % 12 == 0){
-        let maxAntwoordenGoed = 0;
+    console.log(kwiz.gesteldeVragen.length);
+    if(kwiz.gesteldeVragen.length % 12 == 0){
+        let maxAntwoordenGoed = -1;
         let teamsMetPunten = 0;
         let minAntwoordenMetPunten= 0;
         kwiz.teams.forEach(function (team) {
@@ -18,6 +19,7 @@ var functie = function(session, websocket){
             }
         });
         minAntwoordenMetPunten = maxAntwoordenGoed;
+        maxAntwoordenGoed = -1;
         if(teamsMetPunten == 1){
             kwiz.teams.forEach(function (team) {
                 if(team.vragenGoed > maxAntwoordenGoed && team.vragenGoed < minAntwoordenMetPunten){
@@ -32,6 +34,7 @@ var functie = function(session, websocket){
             });
             minAntwoordenMetPunten = maxAntwoordenGoed;
         }
+        maxAntwoordenGoed = -1;
         if(teamsMetPunten == 2){
             kwiz.teams.forEach(function (team) {
                 if(team.vragenGoed > maxAntwoordenGoed && team.vragenGoed < minAntwoordenMetPunten){
@@ -50,6 +53,7 @@ var functie = function(session, websocket){
             if(team.vragenGoed < minAntwoordenMetPunten){
                 team.rondepunten += 0.1;
             }
+            team.vragenGoed = 0;
         });
         let scorebordSocket = kwiz.beamerSocket;
 
@@ -71,7 +75,6 @@ var functie = function(session, websocket){
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
                 teamgegevens: teamgegevens
             };
-            console.log(scorebordData);
             scorebordSocket.onopen = function (event) {};
             scorebordSocket.send(JSON.stringify(scorebordData));
         }

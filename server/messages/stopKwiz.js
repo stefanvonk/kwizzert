@@ -3,14 +3,12 @@ var functie = function(session, websocket){
     if(kwiz){
         let scorebordSocket = kwiz.beamerSocket;
         let scorelijst = [];
-        let scorelijstObject = {
-            teamnaam: "",
-            rondepunten: 0,
-        };
 
         kwiz.teams.forEach(function (team) {
-            scorelijstObject.teamnaam = team.teamnaam;
-            scorelijstObject.rondepunten = team.rondepunten;
+            let scorelijstObject = {
+                teamnaam: team.teamnaam,
+                rondepunten: team.rondepunten
+            };
 
             scorelijst.push(scorelijstObject);
         });

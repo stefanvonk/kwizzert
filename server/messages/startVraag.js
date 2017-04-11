@@ -12,7 +12,7 @@ var functie = function(vraag, session, websocket){
         if(scorebordSocket){
             scorebordData = {
                 Type: "scorebordvraag",
-                rondenummer: Math.floor(kwiz.gesteldeVragen.length / 12),
+                rondenummer: Math.floor((kwiz.gesteldeVragen.length -1) / 12),
                 vraagnummer: (kwiz.gesteldeVragen.length % 12),
                 vraag: vraag.name,
                 categorie: vraag.category
