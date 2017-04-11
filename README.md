@@ -77,6 +77,8 @@ De Scorebord-app heeft aan het begin nog een aanmeldscherm nodig. Dit om de beam
 ## Communicatie protocol
 * We zullen in deze app alleen communiceren via websockets omdat de dataoverdracht klein is.
 
+Voor de communicatie van de server naar een cliënt als een andere cliënt de server benaderd is sockets een must. Bijvoorbeeld een team dat zich aanmeldt en de server die vervolgens een bericht naar de kwizmeestert stuurt. Omdat sockets er al zijn en omdat de dataoverdracht klein is in de communicatie kan hier net zo goed gebruik van gemaakt worden. Zowel sockets als REST implementeren levert alleen maar extra werk op.
+
 De communicatie via ws zal op de volgende manier worden gedefineerd als objecten:
 ```js
 object: {
