@@ -6,7 +6,7 @@ class AchterafKwiz extends React.Component {
         return (
             <div className="App">
                 <h1>Einde kwiz.</h1>
-                <Table striped bordered condensed hover>
+                <Table className="achterafKwiz" striped bordered condensed hover>
                     <thead>
                         <tr>
                             <th>Teamnaam</th>
