@@ -2,9 +2,6 @@
 
 # dependencies
 /node_modules
-/Clients/kwizmeestert/node_modules
-/Clients/team/node_modules
-/Clients/scorebord/node_modules
 
 # testing
 /coverage
