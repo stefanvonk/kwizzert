@@ -1,14 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/server/node_modules
-/server/build
-/clients/kwizmeestert/node_modules
-/clients/kwizmeestert/build
-/clients/scorebord/node_modules
-/clients/scorebord/build
-/clients/team/node_modules
-/clients/team/build
+/node_modules
 
 # testing
 /coverage

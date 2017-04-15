@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 
 var dbName = 'questions';
+let db = "mongodb://MongoUser:Paprika123@ds157500.mlab.com:57500/pubkwizhan/";
 
 var questionSchema = mongoose.Schema({
     name: String,
@@ -21,7 +22,7 @@ class Mongo {
     }
 
     constructor(){
-        mongoose.connect('mongodb://localhost/' + dbName);
+        mongoose.connect(db + dbName);
     }
 
     fillDatabase() {
