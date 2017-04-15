@@ -2,6 +2,9 @@
   "name": "kwizzert",
   "version": "0.0.1",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "^4.13.3",
     "ws": "^0.8.0",
