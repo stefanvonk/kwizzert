@@ -8,6 +8,8 @@ const theWebSocketServer = new ws.Server({
     server: theHttpServer
 });
 
+const port = process.env.PORT || 3000;
+
 //Import Messages
 
 const mongoose        = require('./DatabaseConnection/mongoose.js');
@@ -49,9 +51,9 @@ app.use('/team', express.static(path.join(__dirname, './Clients/team/build')));
 app.use('/scorebord', express.static(path.join(__dirname, './Clients/scorebord/build')));
 
 theHttpServer.on('request', app);
-theHttpServer.listen( 3000,
+theHttpServer.listen( port,
     function() {
-        console.log("The Server is lisening on port 3000.")
+        console.log("The Server is lisening on port " + port + ".");
     });
 
 theWebSocketServer.on('connection', function connection(websocket) {
